@@ -1,0 +1,24 @@
+{
+    "name": "Czech Characters",
+    "version": "0.1",
+
+    "description": "__MSG_extDescription__",
+
+    "icons": {
+        "16": "images/icon_16.png",
+        "48": "images/icon_48.png",
+        "128": "images/icon_128.png"
+    },
+
+    "default_locale": "cs",
+
+    "permissions": [
+        "clipboardWrite"
+    ],
+
+    "browser_action": {
+        "default_icon": "images/icon_16.png",
+        "default_title": "__MSG_extDescription__",
+        "default_popup": "views/popup.html"
+    }
+}

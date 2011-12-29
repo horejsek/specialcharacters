@@ -1,0 +1,58 @@
+
+body {
+    font-family: verdana, arial, sans-serif;
+    font-size: 14px;
+    width: 260px;
+    margin: 0px;
+}
+
+#title {
+    background: #333;
+    color: #FFF;
+    font-size: 0.8em;
+    font-weight: normal;
+    text-align: center;
+    padding: 7px 2px;
+    margin: 0px;
+}
+
+.character {
+    background: #DDD;
+    height: 40px;
+    padding: 5px;
+    margin: 0px;
+}
+.character:hover {
+    background: #CCC;
+    cursor: pointer;
+}
+
+.character-sign {
+    font-family: serif;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.character-desc {
+    display: block;
+    position: relative;
+    top: 5px;
+}
+
+.character-code {
+    color: #555;
+    display: block;
+    position: relative;
+    top: 5px;
+    font-size: 0.7em;
+}
+.character-code:before {
+    content: "Hexa kód: ";
+}
+
