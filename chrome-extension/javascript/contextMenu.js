@@ -1,8 +1,9 @@
 
-var linkMenuIdWithCharacterSign = {}
+var linkMenuIdWithCharacter = {}
 
 function createCharacterContextMenu() {
     var i = 0,
+        characters = Characters.getCharacters(),
         countOfCharacters = characters.length;
 
     for (; i < countOfCharacters; i++) {
@@ -12,15 +13,16 @@ function createCharacterContextMenu() {
 
 function createCharacterContextMenuItem(character) {
     var id = chrome.contextMenus.create({
-        "title": character.desc + ' (' + character.sign + ')',
-        "contexts": ['editable'],
-        "onclick": onClick
+        'title': 'Vložit: ' + character.sign + ' (' + character.desc + ')',
+        'contexts': ['editable'],
+        'onclick': onClick
     });
-    linkMenuIdWithCharacterSign[id] = character.sign;
+    linkMenuIdWithCharacter[id] = character;
 }
 
 function onClick(info, tab) {
-    chrome.tabs.sendRequest(tab.id, {action: "appendTextToActiveElement", text: linkMenuIdWithCharacterSign[info.menuItemId]});
+    var character = linkMenuIdWithCharacter[info.menuItemId];
+    Characters.insertCharacterToActiveElement(tab.id, character);
 }
 
 createCharacterContextMenu();
