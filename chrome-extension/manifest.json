@@ -1,8 +1,7 @@
 {
-    "name": "Czech Characters",
     "version": "0.1",
-
-    "description": "__MSG_extDescription__",
+    "name": "Czech Characters",
+    "description": "České znaky",
 
     "icons": {
         "16": "images/icon_16.png",
@@ -10,15 +9,22 @@
         "128": "images/icon_128.png"
     },
 
-    "default_locale": "cs",
-
     "permissions": [
-        "clipboardWrite"
+        "clipboardWrite",
+        "contextMenus",
+        "tabs"
     ],
 
     "browser_action": {
         "default_icon": "images/icon_16.png",
-        "default_title": "__MSG_extDescription__",
+        "default_title": "České znaky",
         "default_popup": "views/popup.html"
-    }
+    },
+
+    "background_page": "views/background.html",
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["javascript/contentscript.js"]
+    }]
+
 }
