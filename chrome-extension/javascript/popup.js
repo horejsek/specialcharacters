@@ -6,6 +6,7 @@ var Popup = new function () {
 
     function insertListOfCharacters() {
         var i = 0,
+            characters = Characters.getCharacters(),
             countOfCharacters = characters.length,
             frag = document.createDocumentFragment();
 
