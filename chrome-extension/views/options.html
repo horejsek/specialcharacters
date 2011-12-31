@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Nastavení Českých znaků</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="../styles/options.css" type="text/css" />
+        <link rel="stylesheet" href="../styles/chrome/chrome.css" type="text/css" />
+        <script type="text/javascript" src="../javascript/characters.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../javascript/options.js" charset="utf-8"></script>
+    </head>
+    <body onload="Options.init();">
+        <h2 id="title">Nastavení Českých znaků</h2>
+
+        <a href="https://github.com/horejsek/czechCharacters/" target="cch-github" id="github">
+            <img id="github" src="../images/github.png" />
+        </a>
+
+        <div id="body">
+            <table id="options">
+                <thead>
+                    <tr>
+                        <td colspan="3" class="title">Nastavení znaků</td>
+                    </tr>
+                </thead>
+
+                <tbody id="characters">
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="save">
+                            <button onclick="saveOptions()" id="save">Uložit</button>
+                            <span id="savePendings">Jsou věci, které čekají na uložení</span>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <br />
+
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="cch-donate" id="donate-form">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                ">
+                <input type="image" src="../images/donate.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                <span id="donate">Pokud se ti toto rozšíření líbí - můžeš mi koupit pivo! :p</span>
+            </form>
+
+            <div id="status" i18n-text="optionsSaved">Nastavení uloženo</div>
+        </div>
+    </body>
+</html>
