@@ -1,27 +1,19 @@
 
+var Character = function (sign, desc) {
+    return {
+        'sign': sign,
+        'desc': desc,
+    };
+};
+
 var Characters = new function () {
     var characters = [];
     var defaultCharacters = [
-        {
-            'sign': '–',
-            'desc': 'pomlčka',
-        },
-        {
-            'sign': '—',
-            'desc': 'dlouhá pomlčka',
-        },
-        {
-            'sign': '„',
-            'desc': 'levá dolní uvozovka',
-        },
-        {
-            'sign': '”',
-            'desc': 'pravá horní uvozovka',
-        },
-        {
-            'sign': '“',
-            'desc': 'levá horní uvozovka',
-        }
+        new Character('–', 'pomlčka'),
+        new Character('—', 'dlouhá pomlčka'),
+        new Character('„', 'levá dolní uvozovka'),
+        new Character('”', 'pravá horní uvozovka'),
+        new Character('“', 'levá horní uvozovka')
     ];
 
     this.getCharacters = function () {
@@ -35,7 +27,7 @@ var Characters = new function () {
         });
     };
 
-    function restore() {
+    this.restore = function () {
         if (localStorage['countOfCharacters'] === undefined) {
             saveDefault();
         }
@@ -44,18 +36,17 @@ var Characters = new function () {
 
         characters = [];
         for (var i = 0; i < countOfCharacters; i++) {
-            characters.push({
-                'sign': localStorage['character.sign['+i+']'],
-                'desc': localStorage['character.desc['+i+']']
-            });
+            var sign = localStorage['character.sign['+i+']'],
+                desc = localStorage['character.desc['+i+']'];
+            characters.push(new Character(sign, desc));
         }
     }
 
-    function saveDefault() {
-        save(defaultCharacters);
+    this.saveDefault = function () {
+        this.save(defaultCharacters);
     }
 
-    function save(charactersToSave) {
+    this.save = function(charactersToSave) {
         if (charactersToSave === null) {
             charactersToSave = characters;
         }
@@ -68,7 +59,9 @@ var Characters = new function () {
             localStorage['character.sign['+i+']'] = character.sign;
             localStorage['character.desc['+i+']'] = character.desc;
         }
+
+        this.restore();
     }
 
-    restore();
+    this.restore();
 }
