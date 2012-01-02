@@ -29,7 +29,7 @@ var Characters = new function () {
 
     this.restore = function () {
         if (localStorage['countOfCharacters'] === undefined) {
-            saveDefault();
+            this.saveDefault();
         }
 
         var countOfCharacters = localStorage['countOfCharacters'];
