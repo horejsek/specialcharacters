@@ -42,7 +42,7 @@ body {
 .character-desc {
     display: block;
     position: relative;
-    top: 5px;
+    top: 10px; /* 5px */
 }
 
 .character-code {
@@ -55,4 +55,3 @@ body {
 .character-code:before {
     content: "Hexa kód: ";
 }
-

@@ -1,30 +1,26 @@
 
 var Characters = new function () {
-    var characters = [
+    var characters = [];
+    var defaultCharacters = [
         {
             'sign': '–',
             'desc': 'pomlčka',
-            'hex': '2013'
         },
         {
             'sign': '—',
             'desc': 'dlouhá pomlčka',
-            'hex': '2014'
         },
         {
             'sign': '„',
             'desc': 'levá dolní uvozovka',
-            'hex': '201e'
         },
         {
             'sign': '”',
             'desc': 'pravá horní uvozovka',
-            'hex': '201d'
         },
         {
             'sign': '“',
             'desc': 'levá horní uvozovka',
-            'hex': '2020'
         }
     ];
 
@@ -38,4 +34,41 @@ var Characters = new function () {
             text: character.sign
         });
     };
+
+    function restore() {
+        if (localStorage['countOfCharacters'] === undefined) {
+            saveDefault();
+        }
+
+        var countOfCharacters = localStorage['countOfCharacters'];
+
+        characters = [];
+        for (var i = 0; i < countOfCharacters; i++) {
+            characters.push({
+                'sign': localStorage['character.sign['+i+']'],
+                'desc': localStorage['character.desc['+i+']']
+            });
+        }
+    }
+
+    function saveDefault() {
+        save(defaultCharacters);
+    }
+
+    function save(charactersToSave) {
+        if (charactersToSave === null) {
+            charactersToSave = characters;
+        }
+
+        var countOfCharacters = charactersToSave.length;
+        localStorage['countOfCharacters'] = countOfCharacters;
+
+        for (var i = 0; i < countOfCharacters; i++) {
+            var character = charactersToSave[i];
+            localStorage['character.sign['+i+']'] = character.sign;
+            localStorage['character.desc['+i+']'] = character.desc;
+        }
+    }
+
+    restore();
 }

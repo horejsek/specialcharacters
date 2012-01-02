@@ -33,7 +33,7 @@ div#body {
 
 table#options,
 table#features {
-    width: 100%;
+    width: 450px;
 }
 table#options td,
 table#features td {
@@ -116,4 +116,10 @@ div#status {
     padding: 8px 5px 8px;
     border-radius: 0 0 10px 10px;
     display: none;
+}
+
+.character-sign {
+    width: 30px;
+    text-align: center;
+    
 }

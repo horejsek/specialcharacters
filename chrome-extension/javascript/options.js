@@ -29,6 +29,7 @@ var Options = new function () {
         characterCellSign.innerHTML = 'Znak:';
 
         var input = document.createElement('input');
+        input.setAttribute('class', 'character-sign');
         input.type = 'text';
         input.value = sign;
         characterCellSign.appendChild(input);
