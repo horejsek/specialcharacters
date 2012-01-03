@@ -70,11 +70,13 @@ var Options = new function () {
 
         Characters.save(newCharacters);
         this.hideSavePendings();
+        ContextMenu.updateCharacterContextMenu();
     };
 
     this.saveDefault = function () {
         Characters.saveDefault();
         insertListOfCharacters();
+        ContextMenu.updateCharacterContextMenu();
     };
 
     this.showSavePendings = function () {

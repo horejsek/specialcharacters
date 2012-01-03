@@ -1,28 +1,36 @@
 
-var linkMenuIdWithCharacter = {}
+var ContextMenu = new function () {
+    var linkMenuIdWithCharacter = {}
 
-function createCharacterContextMenu() {
-    var i = 0,
-        characters = Characters.getCharacters(),
-        countOfCharacters = characters.length;
-
-    for (; i < countOfCharacters; i++) {
-        createCharacterContextMenuItem(characters[i]);
+    this.updateCharacterContextMenu = function() {
+        chrome.contextMenus.removeAll(this.createCharacterContextMenu);
     }
-}
 
-function createCharacterContextMenuItem(character) {
-    var id = chrome.contextMenus.create({
-        'title': 'Vložit: ' + character.sign + ' (' + character.desc + ')',
-        'contexts': ['editable'],
-        'onclick': onClick
-    });
-    linkMenuIdWithCharacter[id] = character;
-}
+    this.createCharacterContextMenu = function() {
+        var i = 0,
+            characters = Characters.getCharacters(),
+            countOfCharacters = characters.length;
 
-function onClick(info, tab) {
-    var character = linkMenuIdWithCharacter[info.menuItemId];
-    Characters.insertCharacterToActiveElement(tab.id, character);
-}
+        for (; i < countOfCharacters; i++) {
+            createCharacterContextMenuItem(characters[i]);
+        }
+    }
 
-createCharacterContextMenu();
+    function createCharacterContextMenuItem(character) {
+        var id = chrome.contextMenus.create(getPropertiesOfCharacter(character));
+        linkMenuIdWithCharacter[id] = character;
+    }
+
+    function getPropertiesOfCharacter(character) {
+        return {
+            'title': 'Vložit: ' + character.sign + ' (' + character.desc + ')',
+            'contexts': ['editable'],
+            'onclick': onClick
+        };
+    }
+
+    function onClick(info, tab) {
+        var character = linkMenuIdWithCharacter[info.menuItemId];
+        Characters.insertCharacterToActiveElement(tab.id, character);
+    }
+};
