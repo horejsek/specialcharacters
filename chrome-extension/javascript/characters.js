@@ -13,7 +13,8 @@ var Characters = new function () {
         new Character('—', 'dlouhá pomlčka'),
         new Character('„', 'levá dolní uvozovka'),
         new Character('”', 'pravá horní uvozovka'),
-        new Character('“', 'levá horní uvozovka')
+        new Character('“', 'levá horní uvozovka'),
+        new Character('…', 'výpustka')
     ];
 
     this.getCharacters = function () {
