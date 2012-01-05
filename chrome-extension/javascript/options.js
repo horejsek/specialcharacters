@@ -1,5 +1,7 @@
 
 var Options = new function () {
+    this.countOfCharacters = 0;
+
     this.init = function () {
         insertListOfCharacters();
     };
@@ -7,10 +9,11 @@ var Options = new function () {
     function insertListOfCharacters() {
         var i = 0,
             characters = Characters.getCharacters(),
-            countOfCharacters = characters.length,
             frag = document.createDocumentFragment();
 
-        for (; i < countOfCharacters; i++) {
+        Options.countOfCharacters = characters.length;
+
+        for (; i < Options.countOfCharacters; i++) {
             frag.appendChild(createElmCharacter(characters[i], i));
         }
 
@@ -57,12 +60,11 @@ var Options = new function () {
 
     this.save = function () {
         var i = 0,
-            characters = Characters.getCharacters(),
-            countOfCharacters = characters.length;
+            characters = Characters.getCharacters();
 
         var newCharacters = [];
 
-        for (; i < countOfCharacters; i++) {
+        for (; i < Options.countOfCharacters; i++) {
             var sign = document.getElementById('character-sign-'+i).value,
                 desc = document.getElementById('character-desc-'+i).value;
             newCharacters.push(new Character(sign, desc));
@@ -85,5 +87,13 @@ var Options = new function () {
 
     this.hideSavePendings = function () {
         document.getElementById('savePendings').style.display = 'none';
+    };
+
+    this.addCharacter = function () {
+        newCharacterElm = createElmCharacter(new Character(), Options.countOfCharacters);
+        Options.countOfCharacters += 1;
+
+        charactersElm = document.getElementById('characters');
+        charactersElm.appendChild(newCharacterElm);
     };
 }

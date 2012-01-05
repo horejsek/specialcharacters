@@ -1,5 +1,8 @@
 
 var Character = function (sign, desc) {
+    sign = sign || '';
+    desc = desc || '';
+    
     return {
         'sign': sign,
         'desc': desc,
