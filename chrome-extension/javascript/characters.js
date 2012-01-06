@@ -2,7 +2,7 @@
 var Character = function (sign, desc) {
     sign = sign || '';
     desc = desc || '';
-    
+
     return {
         'sign': sign,
         'desc': desc,
@@ -14,9 +14,7 @@ var Characters = new function () {
     var defaultCharacters = [
         new Character('–', 'pomlčka'),
         new Character('—', 'dlouhá pomlčka'),
-        new Character('„', 'levá dolní uvozovka'),
-        new Character('”', 'pravá horní uvozovka'),
-        new Character('“', 'levá horní uvozovka'),
+        new Character('„“', 'uvozovky'),
         new Character('…', 'výpustka')
     ];
 
