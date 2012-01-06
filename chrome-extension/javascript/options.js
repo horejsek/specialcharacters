@@ -39,6 +39,7 @@ var Options = new function () {
         input.setAttribute('onchange', 'Options.showSavePendings()');
         input.setAttribute('class', 'character-sign');
         input.setAttribute('id', 'character-sign-' + index);
+        input.setAttribute('maxlength', 2);
         input.type = 'text';
         input.value = sign;
         characterCellSign.appendChild(input);
