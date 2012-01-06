@@ -24,8 +24,10 @@ var Options = new function () {
 
     function createElmCharacter(character, index) {
         var characterRow = document.createElement('tr');
+        characterRow.setAttribute('id', 'character-' + index)
         characterRow.appendChild(createCharacterCellSign(character.sign, index));
         characterRow.appendChild(createCharacterCellDesc(character.desc, index));
+        characterRow.appendChild(createCharacterCellDelete(index));
         return characterRow;
     }
 
@@ -58,17 +60,35 @@ var Options = new function () {
         return characterCellDesc;
     }
 
+    function createCharacterCellDelete(index) {
+        var cell = document.createElement('td');
+
+        var deleteButton = document.createElement('button');
+        deleteButton.setAttribute('onclick', 'Options.deleteCharacter(' + index + ')');
+        deleteButton.innerHTML = 'X';
+
+        cell.appendChild(deleteButton);
+        return cell;
+    }
+
     this.save = function () {
-        var i = 0,
+        var index = 0,
             characters = Characters.getCharacters();
 
         var newCharacters = [];
 
-        for (; i < Options.countOfCharacters; i++) {
-            var sign = document.getElementById('character-sign-'+i).value,
-                desc = document.getElementById('character-desc-'+i).value;
-            newCharacters.push(new Character(sign, desc));
-        }
+        do {
+            var sign = document.getElementById('character-sign-'+index),
+                desc = document.getElementById('character-desc-'+index);
+
+            if (sign !== undefined && sign !== null) {
+                newCharacters.push(new Character(sign.value, desc.value));
+                if (newCharacters.length == Options.countOfCharacters) {
+                    break;
+                }
+            }
+            index++;
+        } while(true);
 
         Characters.save(newCharacters);
         this.hideSavePendings();
@@ -91,9 +111,20 @@ var Options = new function () {
 
     this.addCharacter = function () {
         newCharacterElm = createElmCharacter(new Character(), Options.countOfCharacters);
-        Options.countOfCharacters += 1;
+        Options.countOfCharacters++;
 
         charactersElm = document.getElementById('characters');
         charactersElm.appendChild(newCharacterElm);
+        this.showSavePendings();
     };
+
+    this.deleteCharacter = function (index) {
+        var characters = document.getElementById('characters'),
+            characterElm = document.getElementById('character-' + index);
+
+        Options.countOfCharacters--;
+
+        characters.removeChild(characterElm);
+        this.showSavePendings();
+    }
 }
