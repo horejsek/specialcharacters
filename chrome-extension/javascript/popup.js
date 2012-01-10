@@ -23,7 +23,6 @@ var Popup = new function () {
         characterParagraph.setAttribute('onclick', 'Popup.copyToClipboard("'+character.sign+'")');
         characterParagraph.appendChild(createElmCharacterSign(character.sign));
         characterParagraph.appendChild(createElmCharacterDesc(character.desc));
-        //characterParagraph.appendChild(createElmCharacterCode(character.hex));
         return characterParagraph;
     }
 
@@ -40,13 +39,6 @@ var Popup = new function () {
         characterDesc.innerHTML = desc;
         return characterDesc;
     }
-
-    /*function createElmCharacterCode(code) {
-        var characterCode = document.createElement('span');
-        characterCode.setAttribute('class', 'character-code');
-        characterCode.innerHTML = code;
-        return characterCode;
-    }*/
 
     this.copyToClipboard = function (text) {
         var clipboardTextarea = createClipboardTextarea(text);

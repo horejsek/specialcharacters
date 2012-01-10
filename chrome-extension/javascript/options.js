@@ -33,7 +33,7 @@ var Options = new function () {
 
     function createCharacterCellSign(sign, index) {
         var characterCellSign = document.createElement('td');
-        characterCellSign.innerHTML = 'Znak:';
+        characterCellSign.innerHTML = chrome.i18n.getMessage('optionGeneralCharacter');
 
         var input = document.createElement('input');
         input.setAttribute('onchange', 'Options.showSavePendings()');
@@ -49,7 +49,7 @@ var Options = new function () {
 
     function createCharacterCellDesc(desc, index) {
         var characterCellDesc = document.createElement('td');
-        characterCellDesc.innerHTML = 'Popis:';
+        characterCellDesc.innerHTML = chrome.i18n.getMessage('optionGeneralCharacterDescription');
 
         var input = document.createElement('input');
         input.setAttribute('onchange', 'Options.showSavePendings()');
@@ -66,7 +66,7 @@ var Options = new function () {
 
         var deleteButton = document.createElement('button');
         deleteButton.setAttribute('onclick', 'Options.deleteCharacter(' + index + ')');
-        deleteButton.innerHTML = 'X';
+        deleteButton.innerHTML = chrome.i18n.getMessage('optionGeneralDeleteCharacterButton');
 
         cell.appendChild(deleteButton);
         return cell;

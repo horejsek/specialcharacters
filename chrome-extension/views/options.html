@@ -1,15 +1,17 @@
 <html>
     <head>
-        <title>Nastavení Českých znaků</title>
+        <title i18n-text="optionsTitle"></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="../styles/options.css" type="text/css" />
         <link rel="stylesheet" href="../styles/chrome/chrome.css" type="text/css" />
+        <script type="text/javascript" src="../javascript/libs/jquery-1.6.min.js"></script>
+        <script type="text/javascript" src="../javascript/libs/jquery-i18n.js"></script>
         <script type="text/javascript" src="../javascript/characters.js" charset="utf-8"></script>
         <script type="text/javascript" src="../javascript/contextMenu.js" charset="utf-8"></script>
         <script type="text/javascript" src="../javascript/options.js" charset="utf-8"></script>
     </head>
     <body onload="Options.init();">
-        <h2 id="title">Nastavení Českých znaků</h2>
+        <h2 id="title" i18n-text="optionsTitle"></h2>
 
         <a href="https://github.com/horejsek/czechCharacters/" target="cch-github" id="github">
             <img id="github" src="../images/github.png" />
@@ -19,7 +21,7 @@
             <table id="options">
                 <thead>
                     <tr>
-                        <td colspan="3" class="title">Nastavení znaků</td>
+                        <td colspan="3" class="title" i18n-text="optionsGeneralTitle"></td>
                     </tr>
                 </thead>
 
@@ -28,13 +30,13 @@
 
                 <tfoot>
                     <tr>
-                        <td colspan="3"><button onclick="Options.addCharacter()" id="add">Přidat znak</button></td>
+                        <td colspan="3"><button onclick="Options.addCharacter()" id="add" i18n-text="optionGeneralAddCharacterButton"></button></td>
                     </tr>
                     <tr>
                         <td colspan="3" class="save">
-                            <button onclick="Options.save()" id="save">Uložit</button>
-                            <button onclick="Options.saveDefault()" id="save-default">Obnovit výchozí</button>
-                            <span id="savePendings">Jsou věci, které čekají na uložení</span>
+                            <button onclick="Options.save()" id="save" i18n-text="optionsSaveButton"></button>
+                            <button onclick="Options.saveDefault()" id="save-default" i18n-text="optionsRestoreDefaultButton"></button>
+                            <span id="savePendings" i18n-text="optionsSavePendings"></span>
                         </td>
                     </tr>
                 </tfoot>
@@ -48,10 +50,10 @@
                 ">
                 <input type="image" src="../images/donate.gif" name="submit" alt="PayPal - The safer, easier way to pay online!" />
                 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-                <span id="donate">Pokud se ti toto rozšíření líbí - můžeš mi koupit pivo! :p</span>
+                <span id="donate" i18n-text="donateIfLike"></span>
             </form>
 
-            <div id="status" i18n-text="optionsSaved">Nastavení uloženo</div>
+            <div id="status" i18n-text="optionsSaved"></div>
         </div>
     </body>
 </html>

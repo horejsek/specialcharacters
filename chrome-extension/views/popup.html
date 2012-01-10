@@ -2,11 +2,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="../styles/popup.css" type="text/css" />
+        <script type="text/javascript" src="../javascript/libs/jquery-1.6.min.js"></script>
+        <script type="text/javascript" src="../javascript/libs/jquery-i18n.js"></script>
         <script src="../javascript/characters.js" charset="utf-8"></script>
         <script src="../javascript/popup.js" charset="utf-8"></script>
     </head>
     <body onload="Popup.init();">
-        <h1 id="title">Vyber znak pro zkopírování do schránky:</h1>
+        <h1 id="title" i18n-text="popupChooseCharacterToCopyIntoClipboard"></h1>
         <div id="characters"></div>
     </body>
 </html>

@@ -1,7 +1,7 @@
 {
     "version": "0.8",
-    "name": "České znaky",
-    "description": "České znaky",
+    "name": "__MSG_extName__",
+    "description": "__MSG_extDescription__",
 
     "icons": {
         "16": "images/icon_16.png",
@@ -15,9 +15,11 @@
         "tabs"
     ],
 
+    "default_locale": "cs",
+
     "browser_action": {
         "default_icon": "images/icon_16.png",
-        "default_title": "České znaky",
+        "default_title": "__MSG_extName__",
         "default_popup": "views/popup.html"
     },
 

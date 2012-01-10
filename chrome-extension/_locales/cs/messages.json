@@ -1,0 +1,56 @@
+{
+    "extName": {
+        "message":        "České znaky",
+        "description":    "Použito pro název rozšíření."
+    },
+    "extDescription": {
+        "message":        "České znaky.",
+        "description":    "Použito pro popis rozšíření."
+    },
+
+    "contextMenuInsert": {
+        "message":        "Vložit:"
+    },
+
+    "popupChooseCharacterToCopyIntoClipboard": {
+        "message":        "Vyber znak pro zkopírování do schránky:"
+    },
+
+    "optionsTitle": {
+        "message":        "Nastavení Českých znaků"
+    },
+
+    "optionsGeneralTitle": {
+        "message":        "Nastavení znaků"
+    },
+
+    "optionGeneralCharacter": {
+        "message":        "Znak:"
+    },
+    "optionGeneralCharacterDescription": {
+        "message":        "Popis:"
+    },
+    "optionGeneralAddCharacterButton": {
+        "message":        "Přidat znak"
+    },
+    "optionGeneralDeleteCharacterButton": {
+        "message":        "X"
+    },
+
+    "optionsSaved": {
+        "message":        "Nastavení uloženo"
+    },
+    "optionsSavePendings": {
+        "message":        "Některé nastavení nebylo uloženo."
+    },
+    "optionsSaveButton": {
+        "message":        "Uložit"
+    },
+    "optionsRestoreDefaultButton": {
+        "message":        "Obnovit výchoží"
+    },
+
+    "donateIfLike": {
+        "message":        "Pokud se ti toto rozšíření líbí - můžeš mi koupit pivo! :p"
+    }
+}

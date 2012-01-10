@@ -23,7 +23,7 @@ var ContextMenu = new function () {
 
     function getPropertiesOfCharacter(character) {
         return {
-            'title': 'Vložit: ' + character.sign + ' (' + character.desc + ')',
+            'title': chrome.i18n.getMessage('contextMenuInsert') + ' ' + character.sign + ' (' + character.desc + ')',
             'contexts': ['editable'],
             'onclick': onClick
         };
