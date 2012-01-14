@@ -2,7 +2,11 @@
 (function () {
 
     function insertIntoValueOfElementToPosition(elm, position, value) {
-        elm.value = elm.value.substr(0, position) + value + elm.value.substr(position, elm.value.length);
+        elm.value = insertIntoText(elm.value, position, value);
+    }
+
+    function insertIntoText(text, position, subtext) {
+        return text.substr(0, position) + subtext + text.substr(position, text.length);
     }
 
     function seekInElemenetToPosistion(elm, position) {
@@ -26,9 +30,22 @@
                     // I inserted one character, therefore selectionEnd + 1.
                     seekInElemenetToPosistion(elm, selectionEnd + 1);
                 }
+
             } else {
                 // If active element is DIV etc.
-                elm.innerHTML = elm.innerHTML + request.text;
+                var selection = window.getSelection(),
+                    selectionStartNode = selection.anchorNode,
+                    selectionStart = selection.anchorOffset,
+                    selectionEndNode = selection.focusNode,
+                    selectionEnd = selection.focusOffset;
+
+                if (request.text.length == 2) {
+                    selectionStartNode.textContent = insertIntoText(selectionStartNode.textContent, selectionStart, request.text[0]);
+                    selectionEndNode.textContent = insertIntoText(selectionEndNode.textContent, selectionEnd, request.text[1]);
+                } else {
+                    selectionEndNode.textContent = insertIntoText(selectionEndNode.textContent, selectionEnd, request.text);
+                }
+                selection.setPosition(selectionEndNode, selectionEnd + 1);
             }
         }
     });
