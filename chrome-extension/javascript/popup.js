@@ -1,59 +1,58 @@
+var Popup;
 
-var Popup = new function () {
-    this.init = function () {
-        insertListOfCharacters();
-    };
-
-    function insertListOfCharacters() {
-        var i = 0,
-            characters = Characters.getCharacters(),
-            countOfCharacters = characters.length,
-            frag = document.createDocumentFragment();
-
-        for (; i < countOfCharacters; i++) {
-            frag.appendChild(createElmCharacter(characters[i]));
-        }
-
-        document.getElementById('characters').appendChild(frag);
+Popup = new function() {
+  var createClipboardTextarea, createElmCharacter, createElmCharacterDesc, createElmCharacterSign, insertListOfCharacters;
+  this.init = function() {
+    return insertListOfCharacters();
+  };
+  insertListOfCharacters = function() {
+    var character, frag, _i, _len, _ref;
+    frag = document.createDocumentFragment();
+    _ref = Characters.getCharacters();
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      character = _ref[_i];
+      frag.appendChild(createElmCharacter(character));
     }
-
-    function createElmCharacter(character) {
-        var characterParagraph = document.createElement('p');
-        characterParagraph.setAttribute('class', 'character');
-        characterParagraph.setAttribute('onclick', 'Popup.copyToClipboard("'+character.sign+'")');
-        characterParagraph.appendChild(createElmCharacterSign(character.sign));
-        characterParagraph.appendChild(createElmCharacterDesc(character.desc));
-        return characterParagraph;
-    }
-
-    function createElmCharacterSign(sign) {
-        var characterSign = document.createElement('span');
-        characterSign.setAttribute('class', 'character-sign');
-        characterSign.innerHTML = sign;
-        return characterSign;
-    }
-
-    function createElmCharacterDesc(desc) {
-        var characterDesc = document.createElement('span');
-        characterDesc.setAttribute('class', 'character-desc');
-        characterDesc.innerHTML = desc;
-        return characterDesc;
-    }
-
-    this.copyToClipboard = function (text) {
-        var clipboardTextarea = createClipboardTextarea(text);
-        document.body.appendChild(clipboardTextarea);
-        clipboardTextarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(clipboardTextarea);
-        window.close();
-    };
-
-    function createClipboardTextarea(text) {
-        var clipboardTextarea = document.createElement('textarea');
-        clipboardTextarea.style.position = "absolute";
-        clipboardTextarea.style.left = "-100%";
-        clipboardTextarea.value = text;
-        return clipboardTextarea;
-    }
-}
+    return document.getElementById('characters').appendChild(frag);
+  };
+  createElmCharacter = function(character) {
+    var elm;
+    elm = document.createElement('p');
+    elm.setAttribute('class', 'character');
+    elm.setAttribute('onclick', 'Popup.copyToClipboard("' + character.sign + '")');
+    elm.appendChild(createElmCharacterSign(character.sign));
+    elm.appendChild(createElmCharacterDesc(character.desc));
+    return elm;
+  };
+  createElmCharacterSign = function(sign) {
+    var elm;
+    elm = document.createElement('span');
+    elm.setAttribute('class', 'character-sign');
+    elm.innerHTML = sign;
+    return elm;
+  };
+  createElmCharacterDesc = function(desc) {
+    var elm;
+    elm = document.createElement('span');
+    elm.setAttribute('class', 'character-desc');
+    elm.innerHTML = desc;
+    return elm;
+  };
+  this.copyToClipboard = function(text) {
+    var clipboardTextarea;
+    clipboardTextarea = createClipboardTextarea(text);
+    document.body.appendChild(clipboardTextarea);
+    clipboardTextarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(clipboardTextarea);
+    return window.close();
+  };
+  createClipboardTextarea = function(text) {
+    var elm;
+    elm = document.createElement('textarea');
+    elm.style.position = 'absolute';
+    elm.style.left = '-100%';
+    elm.value = text;
+    return elm;
+  };
+};
