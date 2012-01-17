@@ -1,69 +1,52 @@
+var Character, Characters;
 
-var Character = function (sign, desc) {
-    sign = sign || '';
-    desc = desc || '';
-
-    return {
-        'sign': sign,
-        'desc': desc,
-    };
+Character = function(sign, desc) {
+  if (sign == null) sign = '';
+  if (desc == null) desc = '';
+  return {
+    sign: sign,
+    desc: desc
+  };
 };
 
-var Characters = new function () {
-    var characters = [];
-    var defaultCharacters = [
-        new Character('–', 'pomlčka'),
-        new Character('—', 'dlouhá pomlčka'),
-        new Character('„“', 'uvozovky'),
-        new Character('…', 'výpustka')
-    ];
-
-    this.getCharacters = function () {
-        return characters.slice();
-    };
-
-    this.insertCharacterToActiveElement = function (tabId, character) {
-        chrome.tabs.sendRequest(tabId, {
-            action: 'insertTextToActiveElement',
-            text: character.sign
-        });
-    };
-
-    this.restore = function () {
-        if (localStorage['countOfCharacters'] === undefined) {
-            this.saveDefault();
-        }
-
-        var countOfCharacters = localStorage['countOfCharacters'];
-
-        characters = [];
-        for (var i = 0; i < countOfCharacters; i++) {
-            var sign = localStorage['character.sign['+i+']'],
-                desc = localStorage['character.desc['+i+']'];
-            characters.push(new Character(sign, desc));
-        }
+Characters = new function() {
+  var characters, defaultCharacters;
+  characters = [];
+  defaultCharacters = [new Character('–', 'pomlčka'), new Character('—', 'dlouhá pomlčka'), new Character('„“', 'uvozovky'), new Character('…', 'výpustka')];
+  this.getCharacters = function() {
+    return characters;
+  };
+  this.insertCharacterToActiveElement = function(tabId, character) {
+    return chrome.tabs.sendRequest(tabId, {
+      action: 'insertTextToActiveElement',
+      text: character.sign
+    });
+  };
+  this.restore = function() {
+    var desc, sign, x, _ref, _results;
+    if (localStorage['countOfCharacters'] === void 0) this.saveDefault();
+    characters = [];
+    _results = [];
+    for (x = 0, _ref = localStorage['countOfCharacters']; 0 <= _ref ? x < _ref : x > _ref; 0 <= _ref ? x++ : x--) {
+      sign = localStorage['character.sign[' + x + ']'];
+      desc = localStorage['character.desc[' + x + ']'];
+      _results.push(characters.push(new Character(sign, desc)));
     }
-
-    this.saveDefault = function () {
-        this.save(defaultCharacters);
+    return _results;
+  };
+  this.saveDefault = function() {
+    return this.save(defaultCharacters);
+  };
+  this.save = function(charactersToSave) {
+    var character, x, _ref;
+    if (charactersToSave === null) charactersToSave = characters;
+    localStorage['countOfCharacters'] = charactersToSave.length;
+    for (x = 0, _ref = charactersToSave.length; 0 <= _ref ? x < _ref : x > _ref; 0 <= _ref ? x++ : x--) {
+      character = charactersToSave[x];
+      localStorage['character.sign[' + x + ']'] = character.sign;
+      localStorage['character.desc[' + x + ']'] = character.desc;
     }
-
-    this.save = function(charactersToSave) {
-        if (charactersToSave === null) {
-            charactersToSave = characters;
-        }
-
-        var countOfCharacters = charactersToSave.length;
-        localStorage['countOfCharacters'] = countOfCharacters;
-
-        for (var i = 0; i < countOfCharacters; i++) {
-            var character = charactersToSave[i];
-            localStorage['character.sign['+i+']'] = character.sign;
-            localStorage['character.desc['+i+']'] = character.desc;
-        }
-
-        this.restore();
-    }
-
-    this.restore();
-}
+    return this.restore();
+  };
+  this.restore();
+};
