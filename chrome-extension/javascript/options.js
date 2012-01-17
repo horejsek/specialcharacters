@@ -100,14 +100,7 @@ var Options = new function () {
         Characters.saveDefault();
         insertListOfCharacters();
         ContextMenu.updateCharacterContextMenu();
-    };
-
-    this.showSavePendings = function () {
-        document.getElementById('savePendings').style.display = 'block';
-    };
-
-    this.hideSavePendings = function () {
-        document.getElementById('savePendings').style.display = 'none';
+        this.hideSavePendings();
     };
 
     this.addCharacter = function () {
@@ -127,5 +120,13 @@ var Options = new function () {
 
         characters.removeChild(characterElm);
         this.showSavePendings();
+    };
+
+    this.showSavePendings = function () {
+        document.getElementById('savePendings').style.display = 'block';
+    };
+
+    this.hideSavePendings = function () {
+        document.getElementById('savePendings').style.display = 'none';
     }
 }
