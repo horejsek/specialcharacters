@@ -1,36 +1,36 @@
+var ContextMenu;
 
-var ContextMenu = new function () {
-    var linkMenuIdWithCharacter = {}
-
-    this.updateCharacterContextMenu = function() {
-        chrome.contextMenus.removeAll(this.createCharacterContextMenu);
+ContextMenu = new function() {
+  var createCharacterContextMenuItem, getPropertiesOfCharacter, linkMenuIdWithCharacter, onClick;
+  linkMenuIdWithCharacter = {};
+  this.updateCharacterContextMenu = function() {
+    return chrome.contextMenus.removeAll(this.createCharacterContextMenu);
+  };
+  this.createCharacterContextMenu = function() {
+    var character, _i, _len, _ref, _results;
+    _ref = Characters.getCharacters();
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      character = _ref[_i];
+      _results.push(createCharacterContextMenuItem(character));
     }
-
-    this.createCharacterContextMenu = function() {
-        var i = 0,
-            characters = Characters.getCharacters(),
-            countOfCharacters = characters.length;
-
-        for (; i < countOfCharacters; i++) {
-            createCharacterContextMenuItem(characters[i]);
-        }
-    }
-
-    function createCharacterContextMenuItem(character) {
-        var id = chrome.contextMenus.create(getPropertiesOfCharacter(character));
-        linkMenuIdWithCharacter[id] = character;
-    }
-
-    function getPropertiesOfCharacter(character) {
-        return {
-            'title': chrome.i18n.getMessage('contextMenuInsert') + ' ' + character.sign + ' (' + character.desc + ')',
-            'contexts': ['editable'],
-            'onclick': onClick
-        };
-    }
-
-    function onClick(info, tab) {
-        var character = linkMenuIdWithCharacter[info.menuItemId];
-        Characters.insertCharacterToActiveElement(tab.id, character);
-    }
+    return _results;
+  };
+  createCharacterContextMenuItem = function(character) {
+    var id;
+    id = chrome.contextMenus.create(getPropertiesOfCharacter(character));
+    return linkMenuIdWithCharacter[id] = character;
+  };
+  getPropertiesOfCharacter = function(character) {
+    return {
+      title: chrome.i18n.getMessage('contextMenuInsert') + ' ' + character.sign + ' (' + character.desc + ')',
+      contexts: ['editable'],
+      onclick: onClick
+    };
+  };
+  onClick = function(info, tab) {
+    var character;
+    character = linkMenuIdWithCharacter[info.menuItemId];
+    return Characters.insertCharacterToActiveElement(tab.id, character);
+  };
 };
