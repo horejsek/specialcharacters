@@ -17,6 +17,7 @@
     selectionStart = elm.selectionStart;
     selectionEnd = elm.selectionEnd;
     if (text.length === 2) {
+      selectionEnd++;
       insertIntoValueOfElementToPosition(elm, selectionStart, text[0]);
       insertIntoValueOfElementToPosition(elm, selectionEnd, text[1]);
     } else {
