@@ -1,5 +1,5 @@
 
-CHROME_EXT_NAME=czechCharacter
+CHROME_EXT_NAME=specialCharacter
 CHROME_EXT_ZIP_ARCHIVE_NAME=$(CHROME_EXT_NAME).zip
 CHROME_EXT_COFFEE_SOURCES=chrome-extension/javascript/*.coffee
 

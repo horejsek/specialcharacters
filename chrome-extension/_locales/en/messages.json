@@ -1,0 +1,56 @@
+{
+    "extName": {
+        "message":        "Special characters",
+        "description":    "Use for name of extension."
+    },
+    "extDescription": {
+        "message":        "Special characters.",
+        "description":    "Use for description of extension."
+    },
+
+    "contextMenuInsert": {
+        "message":        "Insert:"
+    },
+
+    "popupChooseCharacterToCopyIntoClipboard": {
+        "message":        "Choose character for copy into clipboard:"
+    },
+
+    "optionsTitle": {
+        "message":        "Settings of Special characters"
+    },
+
+    "optionsGeneralTitle": {
+        "message":        "Settings of characters"
+    },
+
+    "optionGeneralCharacter": {
+        "message":        "Character:"
+    },
+    "optionGeneralCharacterDescription": {
+        "message":        "Description:"
+    },
+    "optionGeneralAddCharacterButton": {
+        "message":        "Add character"
+    },
+    "optionGeneralDeleteCharacterButton": {
+        "message":        "X"
+    },
+
+    "optionsSaved": {
+        "message":        "Options saved."
+    },
+    "optionsSavePendings": {
+        "message":        "Some changes have not yet been saved."
+    },
+    "optionsSaveButton": {
+        "message":        "Save"
+    },
+    "optionsRestoreDefaultButton": {
+        "message":        "Save defaults"
+    },
+
+    "donateIfLike": {
+        "message":        "If you like of this extension, please, pay me a beer! :p"
+    }
+}
