@@ -12,7 +12,10 @@ Character = function(sign, desc) {
 Characters = new function() {
   var characters, defaultCharacters;
   characters = [];
-  defaultCharacters = [new Character('–', 'pomlčka'), new Character('—', 'dlouhá pomlčka'), new Character('„“', 'uvozovky'), new Character('…', 'výpustka')];
+  defaultCharacters = {
+    cs: [new Character('–', 'pomlčka'), new Character('—', 'dlouhá pomlčka'), new Character('„“', 'uvozovky'), new Character('…', 'výpustka')],
+    en: [new Character('–', 'dash'), new Character('—', 'long dash'), new Character('“”', 'quotation marks'), new Character('…', 'ellipsis')]
+  };
   this.getCharacters = function() {
     return characters.slice();
   };
@@ -35,7 +38,7 @@ Characters = new function() {
     return _results;
   };
   this.saveDefault = function() {
-    return this.save(defaultCharacters);
+    return this.save(defaultCharacters.en);
   };
   this.save = function(charactersToSave) {
     var character, x, _len;

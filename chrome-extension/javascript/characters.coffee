@@ -7,12 +7,19 @@ Character = (sign='', desc='') ->
 
 Characters = new ->
     characters = []
-    defaultCharacters = [
-        new Character('–', 'pomlčka')
-        new Character('—', 'dlouhá pomlčka')
-        new Character('„“', 'uvozovky')
-        new Character('…', 'výpustka')
-    ]
+    defaultCharacters =
+        cs: [
+            new Character('–', 'pomlčka')
+            new Character('—', 'dlouhá pomlčka')
+            new Character('„“', 'uvozovky')
+            new Character('…', 'výpustka')
+        ]
+        en: [
+            new Character('–', 'dash')
+            new Character('—', 'long dash')
+            new Character('“”', 'quotation marks')
+            new Character('…', 'ellipsis')
+        ]
 
     @getCharacters = ->
         characters.slice()
@@ -34,7 +41,7 @@ Characters = new ->
             characters.push(new Character(sign, desc))
 
     @saveDefault = ->
-        this.save(defaultCharacters)
+        this.save(defaultCharacters.cs)
 
     @save = (charactersToSave) ->
         if charactersToSave is null
