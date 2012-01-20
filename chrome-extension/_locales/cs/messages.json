@@ -37,6 +37,14 @@
         "message":        "Odebrat"
     },
 
+    "optionsOtherTitle": {
+        "message":        "Ostatní nastavení"
+    },
+
+    "optionsLocale": {
+        "message":        "Můj jazyk:"
+    },
+
     "optionsSaved": {
         "message":        "Nastavení uloženo."
     },

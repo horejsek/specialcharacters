@@ -1,10 +1,17 @@
 var Options;
 
 Options = new function() {
-  var createCharacterCellDelete, createCharacterCellDesc, createCharacterCellSign, createElmCharacter, insertListOfCharacters;
+  var createCharacterCellDelete, createCharacterCellDesc, createCharacterCellSign, createElmCharacter, insertListOfCharacters, saveCharacters, saveLocale, setLocale;
   this.countOfCharacters = 0;
   this.init = function() {
+    setLocale();
     return insertListOfCharacters();
+  };
+  setLocale = function() {
+    var elm;
+    elm = document.getElementById('locale');
+    elm.value = localStorage['locale'];
+    return elm.setAttribute('onchange', 'Options.showSavePendings()');
   };
   insertListOfCharacters = function() {
     var character, characters, charactersElm, frag, x, _len;
@@ -64,6 +71,22 @@ Options = new function() {
     return cell;
   };
   this.save = function() {
+    saveLocale();
+    saveCharacters();
+    ContextMenu.updateCharacterContextMenu();
+    return this.hideSavePendings();
+  };
+  this.saveDefault = function() {
+    saveLocale();
+    Characters.saveDefault();
+    ContextMenu.updateCharacterContextMenu();
+    this.init();
+    return this.hideSavePendings();
+  };
+  saveLocale = function() {
+    return localStorage['locale'] = document.getElementById('locale').value;
+  };
+  saveCharacters = function() {
     var desc, index, newCharacters, sign;
     index = 0;
     newCharacters = [];
@@ -76,15 +99,7 @@ Options = new function() {
       }
       index++;
     }
-    Characters.save(newCharacters);
-    this.hideSavePendings();
-    return ContextMenu.updateCharacterContextMenu();
-  };
-  this.saveDefault = function() {
-    Characters.saveDefault();
-    this.hideSavePendings();
-    ContextMenu.updateCharacterContextMenu();
-    return insertListOfCharacters();
+    return Characters.save(newCharacters);
   };
   this.addCharacter = function() {
     var newCharacterElm;

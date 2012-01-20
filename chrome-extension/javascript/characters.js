@@ -10,7 +10,7 @@ Character = function(sign, desc) {
 };
 
 Characters = new function() {
-  var characters, defaultCharacters;
+  var characters, defaultCharacters, getLocale;
   characters = [];
   defaultCharacters = {
     cs: [new Character('–', 'pomlčka'), new Character('—', 'dlouhá pomlčka'), new Character('„“', 'uvozovky'), new Character('…', 'výpustka')],
@@ -38,7 +38,7 @@ Characters = new function() {
     return _results;
   };
   this.saveDefault = function() {
-    return this.save(defaultCharacters.en);
+    return this.save(defaultCharacters[getLocale()]);
   };
   this.save = function(charactersToSave) {
     var character, x, _len;
@@ -50,6 +50,12 @@ Characters = new function() {
       localStorage['character.desc[' + x + ']'] = character.desc;
     }
     return this.restore();
+  };
+  getLocale = function() {
+    if (localStorage['locale'] === void 0) {
+      localStorage['locale'] = getLocaleFromNavigator();
+    }
+    return localStorage['locale'];
   };
   this.restore();
 };

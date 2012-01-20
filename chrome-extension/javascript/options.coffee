@@ -2,7 +2,14 @@
 Options = new ->
     @countOfCharacters = 0
 
-    @init = -> insertListOfCharacters()
+    @init = ->
+        setLocale()
+        insertListOfCharacters()
+
+    setLocale = ->
+        elm = document.getElementById('locale')
+        elm.value = localStorage['locale']
+        elm.setAttribute('onchange', 'Options.showSavePendings()')
 
     insertListOfCharacters = ->
         characters = Characters.getCharacters()
@@ -64,6 +71,22 @@ Options = new ->
         cell;
 
     @save = ->
+        saveLocale()
+        saveCharacters()
+        ContextMenu.updateCharacterContextMenu()
+        this.hideSavePendings()
+
+    @saveDefault = ->
+        saveLocale()
+        Characters.saveDefault()
+        ContextMenu.updateCharacterContextMenu()
+        this.init()
+        this.hideSavePendings()
+
+    saveLocale = ->
+        localStorage['locale'] = document.getElementById('locale').value
+
+    saveCharacters = ->
         index = 0
         newCharacters = []
 
@@ -78,14 +101,6 @@ Options = new ->
             index++
 
         Characters.save(newCharacters)
-        this.hideSavePendings()
-        ContextMenu.updateCharacterContextMenu()
-
-    @saveDefault = ->
-        Characters.saveDefault()
-        this.hideSavePendings()
-        ContextMenu.updateCharacterContextMenu()
-        insertListOfCharacters()
 
     @addCharacter = ->
         newCharacterElm = createElmCharacter(new Character(), Options.countOfCharacters++)

@@ -37,6 +37,14 @@
         "message":        "Remove"
     },
 
+    "optionsOtherTitle": {
+        "message":        "Other settings"
+    },
+
+    "optionsLocale": {
+        "message":        "My language:"
+    },
+
     "optionsSaved": {
         "message":        "Options saved."
     },

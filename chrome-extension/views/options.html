@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="../styles/chrome/chrome.css" type="text/css" />
         <script type="text/javascript" src="../javascript/libs/jquery-1.6.min.js"></script>
         <script type="text/javascript" src="../javascript/libs/jquery-i18n.js"></script>
+        <script type="text/javascript" src="../javascript/functions.js" charset="utf-8"></script>
         <script type="text/javascript" src="../javascript/characters.js" charset="utf-8"></script>
         <script type="text/javascript" src="../javascript/contextMenu.js" charset="utf-8"></script>
         <script type="text/javascript" src="../javascript/options.js" charset="utf-8"></script>
@@ -18,7 +19,7 @@
         </a>
 
         <div id="body">
-            <table id="options">
+            <table class="options">
                 <thead>
                     <tr>
                         <td colspan="3" class="title" i18n-text="optionsGeneralTitle"></td>
@@ -35,15 +36,36 @@
                     </tr>
                     <tr>
                         <td colspan="3" class="save">
-                            <button onclick="Options.save()" id="save" i18n-text="optionsSaveButton"></button>
-                            <button onclick="Options.saveDefault()" id="save-default" i18n-text="optionsRestoreDefaultButton"></button>
-                            <span id="savePendings" i18n-text="optionsSavePendings"></span>
                         </td>
                     </tr>
                 </tfoot>
             </table>
 
-            <br />
+            <table class="options">
+                <thead>
+                    <tr>
+                        <td colspan="2" class="title" i18n-text="optionsOtherTitle"></td>
+                    </tr>
+                </thead>
+
+                <tbody id="characters">
+                    <tr>
+                        <td i18n-text="optionsLocale" style="width: 150px;"></td>
+                        <td>
+                            <select id="locale">
+                                <option value="cs">Czech</option>
+                                <option value="en">English</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div id="saveOptions">
+                <button onclick="Options.save()" id="save" i18n-text="optionsSaveButton"></button>
+                <button onclick="Options.saveDefault()" id="save-default" i18n-text="optionsRestoreDefaultButton"></button>
+                <span id="savePendings" i18n-text="optionsSavePendings"></span>
+            </div>
 
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="cch-donate" id="donate-form">
                 <input type="hidden" name="cmd" value="_s-xclick">

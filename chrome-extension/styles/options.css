@@ -7,6 +7,10 @@ body {
     cursor: default;
 }
 
+input {
+    margin: 0px 10px;
+}
+
 h2#title {
     height: 40px;
     line-height: 40px;
@@ -31,36 +35,28 @@ div#body {
     border-radius: 10px;
 }
 
-table#options,
-table#features {
+table.options {
     width: 600px;
 }
-table#options td,
-table#features td {
+table.options td {
     height: 28px;
     font-size: 10pt;
     vertical-align: middle;
     color: #333;
 }
-table#options td {
+table.options td {
     background-color: #fcfcfc;
 }
-table#features td {
-    padding-left: 40px;
-    height: 28px;
-}
-table#options tr.enabled td,
-table#features tr.enabled td {
+table.options tr.enabled td {
     color: #111;
     background-color: transparent;
 }
-table#options td.enable {
+table.options td.enable {
     text-align: center;
     width: 40px;
 }
-table#options td.title,
-table#options td.save,
-table#features td.title {
+table.options td.title,
+table.options td.save {
     font-size: 12pt;
     font-weight: bold;
     padding: 10px;
@@ -102,10 +98,6 @@ span#savePendings {
     display: none;
 }
 
-select#prepareGroovesharkMode {
-    margin-left: 5px;
-}
-
 div#status {
     background: #FFFCAD;
     text-align: center;
@@ -118,13 +110,12 @@ div#status {
     display: none;
 }
 
-input {
-    margin: 0px 10px;
+div#saveOptions {
+    margin: 40px 0px;
 }
 
 .character-sign {
     width: 2.5em;
     font-size: 2em !important;
     text-align: center;
-
 }

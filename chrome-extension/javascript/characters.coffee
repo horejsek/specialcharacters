@@ -41,7 +41,7 @@ Characters = new ->
             characters.push(new Character(sign, desc))
 
     @saveDefault = ->
-        this.save(defaultCharacters.cs)
+        this.save(defaultCharacters[getLocale()])
 
     @save = (charactersToSave) ->
         if charactersToSave is null
@@ -54,6 +54,10 @@ Characters = new ->
             localStorage['character.desc['+x+']'] = character.desc;
 
         this.restore()
+
+    getLocale = ->
+        localStorage['locale'] = getLocaleFromNavigator() if localStorage['locale'] is undefined
+        localStorage['locale']
 
     this.restore()
 
