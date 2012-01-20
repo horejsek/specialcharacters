@@ -15,7 +15,7 @@ Characters = new ->
     ]
 
     @getCharacters = ->
-        characters
+        characters.slice()
 
     @insertCharacterToActiveElement = (tabId, character) ->
         chrome.tabs.sendRequest(tabId, {
@@ -42,8 +42,7 @@ Characters = new ->
 
         localStorage['countOfCharacters'] = charactersToSave.length;
 
-        for x in [0...charactersToSave.length]
-            character = charactersToSave[x]
+        for character, x in charactersToSave
             localStorage['character.sign['+x+']'] = character.sign;
             localStorage['character.desc['+x+']'] = character.desc;
 

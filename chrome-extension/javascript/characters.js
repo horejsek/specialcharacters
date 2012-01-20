@@ -14,7 +14,7 @@ Characters = new function() {
   characters = [];
   defaultCharacters = [new Character('–', 'pomlčka'), new Character('—', 'dlouhá pomlčka'), new Character('„“', 'uvozovky'), new Character('…', 'výpustka')];
   this.getCharacters = function() {
-    return characters;
+    return characters.slice();
   };
   this.insertCharacterToActiveElement = function(tabId, character) {
     return chrome.tabs.sendRequest(tabId, {
@@ -38,10 +38,10 @@ Characters = new function() {
     return this.save(defaultCharacters);
   };
   this.save = function(charactersToSave) {
-    var character, x, _ref;
+    var character, x, _len;
     if (charactersToSave === null) charactersToSave = characters;
     localStorage['countOfCharacters'] = charactersToSave.length;
-    for (x = 0, _ref = charactersToSave.length; 0 <= _ref ? x < _ref : x > _ref; 0 <= _ref ? x++ : x--) {
+    for (x = 0, _len = charactersToSave.length; x < _len; x++) {
       character = charactersToSave[x];
       localStorage['character.sign[' + x + ']'] = character.sign;
       localStorage['character.desc[' + x + ']'] = character.desc;
