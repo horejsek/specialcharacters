@@ -1,5 +1,5 @@
 {
-    "version": "1.0",
+    "version": "2.0",
     "name": "__MSG_extName__",
     "description": "__MSG_extDescription__",
 
@@ -15,7 +15,7 @@
         "tabs"
     ],
 
-    "default_locale": "cs",
+    "default_locale": "en",
 
     "browser_action": {
         "default_icon": "images/icon_16.png",
