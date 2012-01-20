@@ -34,7 +34,7 @@
         "message":        "Add character"
     },
     "optionGeneralDeleteCharacterButton": {
-        "message":        "X"
+        "message":        "Remove"
     },
 
     "optionsSaved": {
