@@ -27,7 +27,7 @@
     "options_page": "views/options.html",
     "content_scripts": [{
         "matches": ["<all_urls>"],
-        "js": ["javascript/contentscript.js"]
+        "js": ["javascript/contentscript.min.js"]
     }]
 
 }
