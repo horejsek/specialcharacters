@@ -57,7 +57,7 @@ compile-chrome-extension:
 
 clean:
 	rm -rf $(CHROME_EXT_NAME) $(CHROME_EXT_ZIP_ARCHIVE_NAME)
-	find $(CHROME_EXT_JS_DIR)* -maxdepth 0 -type f -not -name *.coffee | xargs rm -f
+	find $(CHROME_EXT_JS_DIR)* -maxdepth 1 -type f -not -name *.coffee | xargs rm -f
 
 install-libs:
 	apt-get install nodejs coffeescript
