@@ -6,8 +6,7 @@ CHROME_EXT_ZIP_ARCHIVE_NAME=$(CHROME_EXT_NAME).zip
 CHROME_EXT_JS_DIR=chrome-extension/javascript/
 CHROME_EXT_CLOSURE_LIBRARY=$(CHROME_EXT_JS_DIR)libs/closure-library/
 CHROME_EXT_CLOSURE_COMPILER=$(CHROME_EXT_JS_DIR)libs/closure-compiler.jar
-CHROME_EXT_COFFEE_SOURCES=$(CHROME_EXT_JS_DIR)*.coffee
-CHROME_EXT_JS_SOURCES=$(CHROME_EXT_JS_DIR)*.js
+CHROME_EXT_COFFEE_SOURCES=$(CHROME_EXT_JS_DIR)*.coffee $(CHROME_EXT_JS_DIR)libs/*.coffee
 
 all:
 	@echo "make build-chrome-extension - Create zip archive for Chrome"
@@ -36,6 +35,7 @@ compile-chrome-extension:
 	python $(CHROME_EXT_CLOSURE_LIBRARY)closure/bin/calcdeps.py \
 	    --path $(CHROME_EXT_CLOSURE_LIBRARY) \
 	    --compiler_jar $(CHROME_EXT_CLOSURE_COMPILER) \
+	    --input $(CHROME_EXT_JS_DIR)libs/closure-i18n.js \
 	    --input $(CHROME_EXT_JS_DIR)functions.js \
 	    --input $(CHROME_EXT_JS_DIR)characters.js \
 	    --input $(CHROME_EXT_JS_DIR)contextMenu.js \
@@ -44,6 +44,7 @@ compile-chrome-extension:
 	python $(CHROME_EXT_CLOSURE_LIBRARY)closure/bin/calcdeps.py \
 	    --path $(CHROME_EXT_CLOSURE_LIBRARY) \
 	    --compiler_jar $(CHROME_EXT_CLOSURE_COMPILER) \
+	    --input $(CHROME_EXT_JS_DIR)libs/closure-i18n.js \
 	    --input $(CHROME_EXT_JS_DIR)functions.js \
 	    --input $(CHROME_EXT_JS_DIR)characters.js \
 	    --input $(CHROME_EXT_JS_DIR)popup.js \
