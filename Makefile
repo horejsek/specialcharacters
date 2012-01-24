@@ -1,11 +1,12 @@
 
 SHELL=/bin/bash
 
+CLOSURE_LIBRARY=libs/closure-library/
+CLOSURE_COMPILER=libs/closure-compiler.jar
+
 CHROME_EXT_NAME=specialCharacter
 CHROME_EXT_ZIP_ARCHIVE_NAME=$(CHROME_EXT_NAME).zip
 CHROME_EXT_JS_DIR=chrome-extension/javascript/
-CHROME_EXT_CLOSURE_LIBRARY=$(CHROME_EXT_JS_DIR)libs/closure-library/
-CHROME_EXT_CLOSURE_COMPILER=$(CHROME_EXT_JS_DIR)libs/closure-compiler.jar
 CHROME_EXT_COFFEE_SOURCES=$(CHROME_EXT_JS_DIR)*.coffee $(CHROME_EXT_JS_DIR)libs/*.coffee
 
 all:
@@ -24,40 +25,40 @@ build-chrome-extension: clean compile-chrome-extension
 compile-chrome-extension:
 	coffee -cb $(CHROME_EXT_COFFEE_SOURCES)
 
-	python $(CHROME_EXT_CLOSURE_LIBRARY)closure/bin/calcdeps.py \
-	    --path $(CHROME_EXT_CLOSURE_LIBRARY) \
-	    --compiler_jar $(CHROME_EXT_CLOSURE_COMPILER) \
+	python $(CLOSURE_LIBRARY)closure/bin/calcdeps.py \
+	    --path $(CLOSURE_LIBRARY) \
+	    --compiler_jar $(CLOSURE_COMPILER) \
 	    --input $(CHROME_EXT_JS_DIR)functions.js \
 	    --input $(CHROME_EXT_JS_DIR)characters.js \
 	    --input $(CHROME_EXT_JS_DIR)contextMenu.js \
 	    --input $(CHROME_EXT_JS_DIR)background.js \
 	    --output_mode compiled > $(CHROME_EXT_JS_DIR)background.min.js;
-	python $(CHROME_EXT_CLOSURE_LIBRARY)closure/bin/calcdeps.py \
-	    --path $(CHROME_EXT_CLOSURE_LIBRARY) \
-	    --compiler_jar $(CHROME_EXT_CLOSURE_COMPILER) \
+	python $(CLOSURE_LIBRARY)closure/bin/calcdeps.py \
+	    --path $(CLOSURE_LIBRARY) \
+	    --compiler_jar $(CLOSURE_COMPILER) \
 	    --input $(CHROME_EXT_JS_DIR)libs/closure-i18n.js \
 	    --input $(CHROME_EXT_JS_DIR)functions.js \
 	    --input $(CHROME_EXT_JS_DIR)characters.js \
 	    --input $(CHROME_EXT_JS_DIR)contextMenu.js \
 	    --input $(CHROME_EXT_JS_DIR)options.js \
 	    --output_mode compiled > $(CHROME_EXT_JS_DIR)options.min.js;
-	python $(CHROME_EXT_CLOSURE_LIBRARY)closure/bin/calcdeps.py \
-	    --path $(CHROME_EXT_CLOSURE_LIBRARY) \
-	    --compiler_jar $(CHROME_EXT_CLOSURE_COMPILER) \
+	python $(CLOSURE_LIBRARY)closure/bin/calcdeps.py \
+	    --path $(CLOSURE_LIBRARY) \
+	    --compiler_jar $(CLOSURE_COMPILER) \
 	    --input $(CHROME_EXT_JS_DIR)libs/closure-i18n.js \
 	    --input $(CHROME_EXT_JS_DIR)functions.js \
 	    --input $(CHROME_EXT_JS_DIR)characters.js \
 	    --input $(CHROME_EXT_JS_DIR)popup.js \
 	    --output_mode compiled > $(CHROME_EXT_JS_DIR)popup.min.js;
-	python $(CHROME_EXT_CLOSURE_LIBRARY)closure/bin/calcdeps.py \
-	    --path $(CHROME_EXT_CLOSURE_LIBRARY) \
-	    --compiler_jar $(CHROME_EXT_CLOSURE_COMPILER) \
+	python $(CLOSURE_LIBRARY)closure/bin/calcdeps.py \
+	    --path $(CLOSURE_LIBRARY) \
+	    --compiler_jar $(CLOSURE_COMPILER) \
 	    --input $(CHROME_EXT_JS_DIR)contentscript.js \
 	    --output_mode compiled > $(CHROME_EXT_JS_DIR)contentscript.min.js;
 
 clean:
 	rm -rf $(CHROME_EXT_NAME) $(CHROME_EXT_ZIP_ARCHIVE_NAME)
-	find $(CHROME_EXT_JS_DIR)* -maxdepth 1 -type f -not -name *.coffee | xargs rm -f
+	find $(CHROME_EXT_JS_DIR)* -type f -not -name *.coffee | xargs rm -f
 
 install-libs:
 	apt-get install nodejs coffeescript
