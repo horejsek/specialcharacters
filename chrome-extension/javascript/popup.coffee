@@ -1,4 +1,6 @@
 
+goog.require('goog.dom');
+
 Popup = ->
     self = this
 
