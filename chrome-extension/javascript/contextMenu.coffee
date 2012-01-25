@@ -1,12 +1,14 @@
 
-ContextMenu = new ->
+ContextMenu = ->
     linkMenuIdWithCharacter = {}
+    characters = new Characters()
 
     @updateCharacterContextMenu = ->
-        chrome.contextMenus.removeAll(this.createCharacterContextMenu)
+        chrome.contextMenus.removeAll(@createCharacterContextMenu)
 
     @createCharacterContextMenu = ->
-        for character in Characters.getCharacters()
+        characters.refresh()
+        for character in characters.getCharacters()
             createCharacterContextMenuItem(character)
 
     createCharacterContextMenuItem = (character) ->
@@ -22,7 +24,6 @@ ContextMenu = new ->
 
     onClick = (info, tab) ->
         character = linkMenuIdWithCharacter[info.menuItemId]
-        Characters.insertCharacterToActiveElement(tab.id, character)
+        characters.insertCharacterToActiveElement(tab.id, character)
 
     return
-

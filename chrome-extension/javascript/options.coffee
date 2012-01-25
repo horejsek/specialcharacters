@@ -1,98 +1,118 @@
 
-Options = new ->
+goog.require('goog.dom');
+
+Options = ->
+    self = this
+
     @countOfCharacters = 0
+    contextMenu = new ContextMenu()
+    characters = new Characters()
 
     @init = ->
         setLocale()
         insertListOfCharacters()
 
     setLocale = ->
-        elm = document.getElementById('locale')
+        elm = goog.dom.getElement('locale')
         elm.value = localStorage['locale']
-        elm.setAttribute('onchange', 'Options.showSavePendings()')
+        elm.onchange = -> self.showSavePendings()
 
     insertListOfCharacters = ->
-        characters = Characters.getCharacters()
+        Options.countOfCharacters = characters.getCharacters().length
+
         frag = document.createDocumentFragment()
-
-        Options.countOfCharacters = characters.length
-
-        for character, x in characters
+        for character, x in characters.getCharacters()
             frag.appendChild(createElmCharacter(character, x))
 
-        charactersElm = document.getElementById('characters')
+        charactersElm = goog.dom.getElement('characters')
         charactersElm.innerHTML = ''
         charactersElm.appendChild(frag)
 
     createElmCharacter = (character, index) ->
-        characterRow = document.createElement('tr')
-        characterRow.setAttribute('id', 'character-' + index)
-        characterRow.appendChild(createCharacterCellSign(character.sign, index))
-        characterRow.appendChild(createCharacterCellDesc(character.desc, index))
-        characterRow.appendChild(createCharacterCellDelete(index))
-        characterRow
+        goog.dom.createDom(
+            'tr',
+            {
+                id: 'character-' + index
+            },
+            createCharacterCellSign(character.sign, index),
+            createCharacterCellDesc(character.desc, index),
+            createCharacterCellDelete(index),
+        )
 
     createCharacterCellSign = (sign, index) ->
-        characterCellSign = document.createElement('td')
-        characterCellSign.innerHTML = chrome.i18n.getMessage('optionGeneralCharacter')
-
-        input = document.createElement('input')
-        input.setAttribute('onchange', 'Options.showSavePendings()')
-        input.setAttribute('class', 'character-sign')
-        input.setAttribute('id', 'character-sign-' + index)
-        input.setAttribute('maxlength', 2)
-        input.type = 'text'
-        input.value = sign
-        characterCellSign.appendChild(input)
-
-        characterCellSign
+        input = goog.dom.createDom(
+            'input',
+            {
+                id: 'character-sign-' + index
+                class: 'character-sign'
+                onchange: -> self.showSavePendings()
+                type: 'text'
+                value: sign
+                maxlength: 2
+            }
+        )
+        goog.dom.createDom(
+            'td',
+            undefined,
+            chrome.i18n.getMessage('optionGeneralCharacter'),
+            input,
+        )
 
     createCharacterCellDesc = (desc, index) ->
-        characterCellDesc = document.createElement('td')
-        characterCellDesc.innerHTML = chrome.i18n.getMessage('optionGeneralCharacterDescription')
-
-        input = document.createElement('input')
-        input.setAttribute('onchange', 'Options.showSavePendings()')
-        input.setAttribute('id', 'character-desc-' + index)
-        input.type = 'text'
-        input.value = desc
-        characterCellDesc.appendChild(input)
-
-        characterCellDesc
+        input = goog.dom.createDom(
+            'input',
+            {
+                id: 'character-desc-' + index
+                class: 'character-desc'
+                onchange: -> self.showSavePendings()
+                type: 'text'
+                value: desc
+            }
+        )
+        goog.dom.createDom(
+            'td',
+            undefined,
+            chrome.i18n.getMessage('optionGeneralCharacterDescription'),
+            input,
+        )
 
     createCharacterCellDelete = (index) ->
-        cell = document.createElement('td')
-
-        deleteButton = document.createElement('button')
-        deleteButton.setAttribute('onclick', 'Options.deleteCharacter(' + index + ')')
-        deleteButton.innerHTML = chrome.i18n.getMessage('optionGeneralDeleteCharacterButton')
-
-        cell.appendChild(deleteButton)
-        cell;
+        button = goog.dom.createDom(
+            'button',
+            {
+                onclick: -> self.deleteCharacter(index)
+            },
+            chrome.i18n.getMessage('optionGeneralDeleteCharacterButton'),
+        )
+        goog.dom.createDom(
+            'td',
+            undefined,
+            button,
+        )
 
     @save = ->
         saveLocale()
         saveCharacters()
-        ContextMenu.updateCharacterContextMenu()
-        this.hideSavePendings()
+        contextMenu.updateCharacterContextMenu()
+        @hideSavePendings()
 
     @saveDefault = ->
         saveLocale()
-        Characters.saveDefault()
-        ContextMenu.updateCharacterContextMenu()
-        this.init()
-        this.hideSavePendings()
+        characters.saveDefault()
+        contextMenu.updateCharacterContextMenu()
+        @init()
+        @hideSavePendings()
 
     saveLocale = ->
-        localStorage['locale'] = document.getElementById('locale').value
+        localStorage['locale'] = goog.dom.getElement('locale').value
 
     saveCharacters = ->
         index = 0
         newCharacters = []
 
         loop
-            sign = document.getElementById('character-sign-'+index)
-            desc = document.getElementById('character-desc-'+index)
+            sign = goog.dom.getElement('character-sign-' + index)
+            desc = goog.dom.getElement('character-desc-' + index)
 
             if sign?
                 newCharacters.push(new Character(sign.value, desc.value))
@@ -100,23 +120,23 @@ Options = new ->
 
             index++
 
-        Characters.save(newCharacters)
+        characters.save(newCharacters)
 
     @addCharacter = ->
         newCharacterElm = createElmCharacter(new Character(), Options.countOfCharacters++)
-        document.getElementById('characters').appendChild(newCharacterElm)
-        this.showSavePendings()
+        goog.dom.getElement('characters').appendChild(newCharacterElm)
+        @showSavePendings()
 
     @deleteCharacter = (index) ->
         Options.countOfCharacters--
-        characterElm = document.getElementById('character-' + index)
-        document.getElementById('characters').removeChild(characterElm)
-        this.showSavePendings()
+        characterElm = goog.dom.getElement('character-' + index)
+        goog.dom.getElement('characters').removeChild(characterElm)
+        @showSavePendings()
 
     @showSavePendings = ->
-        document.getElementById('savePendings').style.display = 'block'
+        goog.dom.getElement('savePendings').style.display = 'block'
 
     @hideSavePendings = ->
-        document.getElementById('savePendings').style.display = 'none'
+        goog.dom.getElement('savePendings').style.display = 'none'
 
     return

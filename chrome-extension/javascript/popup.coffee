@@ -1,33 +1,34 @@
 
-Popup = new ->
+Popup = ->
+    self = this
+
+    characters = new Characters()
+
     @init = ->
         insertListOfCharacters()
 
     insertListOfCharacters = ->
         frag = document.createDocumentFragment()
-        for character in Characters.getCharacters()
-            frag.appendChild createElmCharacter(character)
-        document.getElementById('characters').appendChild frag
+        for character in characters.getCharacters()
+            frag.appendChild(createElmCharacter(character))
+        goog.dom.getElement('characters').appendChild(frag)
 
     createElmCharacter = (character) ->
-        elm = document.createElement('p')
-        elm.setAttribute('class', 'character')
-        elm.setAttribute('onclick', 'Popup.copyToClipboard("'+character.sign+'")')
-        elm.appendChild(createElmCharacterSign(character.sign))
-        elm.appendChild(createElmCharacterDesc(character.desc))
-        elm
+        goog.dom.createDom(
+            'p',
+            {
+                class: 'character'
+                onclick: -> self.copyToClipboard(character.sign)
+            },
+            createElmCharacterSign(character.sign),
+            createElmCharacterDesc(character.desc),
+        )
 
     createElmCharacterSign = (sign) ->
-        elm = document.createElement('span')
-        elm.setAttribute('class', 'character-sign')
-        elm.innerHTML = sign
-        elm
+        goog.dom.createDom('span', 'character-sign', sign)
 
     createElmCharacterDesc = (desc) ->
-        elm = document.createElement('span')
-        elm.setAttribute('class', 'character-desc')
-        elm.innerHTML = desc
-        elm
+        goog.dom.createDom('span', 'character-desc', desc)
 
     @copyToClipboard = (text) ->
         clipboardTextarea = createClipboardTextarea(text)
@@ -38,10 +39,9 @@ Popup = new ->
         window.close()
 
     createClipboardTextarea = (text) ->
-        elm = document.createElement('textarea')
-        elm.style.position = 'absolute'
-        elm.style.left = '-100%'
-        elm.value = text
-        elm
+        goog.dom.createDom('textarea', {
+            style: 'position: absolute; left: -100%;'
+            value: text
+        })
 
     return

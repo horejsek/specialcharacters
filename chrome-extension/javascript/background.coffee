@@ -1,2 +1,6 @@
 
-ContextMenu.createCharacterContextMenu()
+Background = ->
+    @init = ->
+        (new ContextMenu()).createCharacterContextMenu()
+
+    return

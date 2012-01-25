@@ -4,9 +4,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="../styles/options.css" type="text/css" />
         <link rel="stylesheet" href="../styles/chrome/chrome.css" type="text/css" />
-        <script type="text/javascript" src="../javascript/options.min.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../javascript/specialCharacters.min.js" charset="utf-8"></script>
+        <script type="text/javascript">var options = new Options();</script>
     </head>
-    <body onload="Options.init();">
+    <body onload="options.init();">
         <h2 id="title" i18n-text="optionsTitle"></h2>
 
         <a href="https://github.com/horejsek/specialCharacters/" target="cch-github" id="github">
@@ -27,7 +28,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="2"></td>
-                        <td><button onclick="Options.addCharacter()" id="add" i18n-text="optionGeneralAddCharacterButton"></button></td>
+                        <td><button onclick="options.addCharacter()" id="add" i18n-text="optionGeneralAddCharacterButton"></button></td>
                     </tr>
                     <tr>
                         <td colspan="3" class="save">
@@ -57,8 +58,8 @@
             </table>
 
             <div id="saveOptions">
-                <button onclick="Options.save()" id="save" i18n-text="optionsSaveButton"></button>
-                <button onclick="Options.saveDefault()" id="save-default" i18n-text="optionsRestoreDefaultButton"></button>
+                <button onclick="options.save()" id="save" i18n-text="optionsSaveButton"></button>
+                <button onclick="options.saveDefault()" id="save-default" i18n-text="optionsRestoreDefaultButton"></button>
                 <span id="savePendings" i18n-text="optionsSavePendings"></span>
             </div>
 

@@ -1,6 +1,10 @@
 
 (->
 
+    chrome.extension.onRequest.addListener((request, sender, sendResponse) ->
+        insertText(document, request.text) if request.action is 'insertTextToActiveElement'
+    )
+
     insertText = (doc, text) ->
         elm = doc.activeElement
 
@@ -48,9 +52,5 @@
 
     seekInElemenetToPosistion = (elm, position) ->
         elm.setSelectionRange(position, position)
-
-    chrome.extension.onRequest.addListener((request, sender, sendResponse) ->
-        insertText(document, request.text) if request.action is 'insertTextToActiveElement'
-    )
 
 )()

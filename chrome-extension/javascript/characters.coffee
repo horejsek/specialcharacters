@@ -5,7 +5,7 @@ Character = (sign='', desc='') ->
         desc: desc
     }
 
-Characters = new ->
+Characters = ->
     characters = []
     defaultCharacters =
         cs: [
@@ -30,9 +30,11 @@ Characters = new ->
             text: character.sign
         })
 
+    @refresh = -> @restore()
+
     @restore = ->
         if localStorage['countOfCharacters'] is undefined
-            this.saveDefault()
+            @saveDefault()
 
         characters = []
         for x in [0...localStorage['countOfCharacters']]
@@ -41,7 +43,7 @@ Characters = new ->
             characters.push(new Character(sign, desc))
 
     @saveDefault = ->
-        this.save(defaultCharacters[getLocale()])
+        @save(defaultCharacters[getLocale()])
 
     @save = (charactersToSave) ->
         if charactersToSave is null
@@ -53,12 +55,12 @@ Characters = new ->
             localStorage['character.sign['+x+']'] = character.sign;
             localStorage['character.desc['+x+']'] = character.desc;
 
-        this.restore()
+        @restore()
 
     getLocale = ->
         localStorage['locale'] = getLocaleFromNavigator() if localStorage['locale'] is undefined
         localStorage['locale']
 
-    this.restore()
+    @restore()
 
     return

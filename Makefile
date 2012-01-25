@@ -28,28 +28,14 @@ compile-chrome-extension:
 	python $(CLOSURE_LIBRARY)closure/bin/calcdeps.py \
 	    --path $(CLOSURE_LIBRARY) \
 	    --compiler_jar $(CLOSURE_COMPILER) \
+	    --input $(CHROME_EXT_JS_DIR)libs/closure-i18n.js \
 	    --input $(CHROME_EXT_JS_DIR)functions.js \
 	    --input $(CHROME_EXT_JS_DIR)characters.js \
 	    --input $(CHROME_EXT_JS_DIR)contextMenu.js \
 	    --input $(CHROME_EXT_JS_DIR)background.js \
-	    --output_mode compiled > $(CHROME_EXT_JS_DIR)background.min.js;
-	python $(CLOSURE_LIBRARY)closure/bin/calcdeps.py \
-	    --path $(CLOSURE_LIBRARY) \
-	    --compiler_jar $(CLOSURE_COMPILER) \
-	    --input $(CHROME_EXT_JS_DIR)libs/closure-i18n.js \
-	    --input $(CHROME_EXT_JS_DIR)functions.js \
-	    --input $(CHROME_EXT_JS_DIR)characters.js \
-	    --input $(CHROME_EXT_JS_DIR)contextMenu.js \
-	    --input $(CHROME_EXT_JS_DIR)options.js \
-	    --output_mode compiled > $(CHROME_EXT_JS_DIR)options.min.js;
-	python $(CLOSURE_LIBRARY)closure/bin/calcdeps.py \
-	    --path $(CLOSURE_LIBRARY) \
-	    --compiler_jar $(CLOSURE_COMPILER) \
-	    --input $(CHROME_EXT_JS_DIR)libs/closure-i18n.js \
-	    --input $(CHROME_EXT_JS_DIR)functions.js \
-	    --input $(CHROME_EXT_JS_DIR)characters.js \
 	    --input $(CHROME_EXT_JS_DIR)popup.js \
-	    --output_mode compiled > $(CHROME_EXT_JS_DIR)popup.min.js;
+	    --input $(CHROME_EXT_JS_DIR)options.js \
+	    --output_mode compiled > $(CHROME_EXT_JS_DIR)specialCharacters.min.js;
 	python $(CLOSURE_LIBRARY)closure/bin/calcdeps.py \
 	    --path $(CLOSURE_LIBRARY) \
 	    --compiler_jar $(CLOSURE_COMPILER) \
