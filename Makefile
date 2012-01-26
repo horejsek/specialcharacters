@@ -12,6 +12,7 @@ CHROME_EXT_COFFEE_SOURCES=$(CHROME_EXT_JS_DIR)*.coffee $(CHROME_EXT_JS_DIR)libs/
 all:
 	@echo "make build-chrome-extension - Create zip archive for Chrome"
 	@echo "make compile-chrome-extension - Compile Chrome Extension"
+	@echo "make localdev - Init submodules, git-hooks, ..."
 	@echo "make clean - Clean directory from compiled and building files"
 	@echo "make install-libs - Install libs for develop"
 
@@ -41,6 +42,10 @@ compile-chrome-extension:
 	    --compiler_jar $(CLOSURE_COMPILER) \
 	    --input $(CHROME_EXT_JS_DIR)contentscript.js \
 	    --output_mode compiled > $(CHROME_EXT_JS_DIR)contentscript.min.js;
+
+localdev:
+	git submodule init
+	git submodule update
 
 clean:
 	rm -rf $(CHROME_EXT_NAME) $(CHROME_EXT_ZIP_ARCHIVE_NAME)
