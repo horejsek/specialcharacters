@@ -1,24 +1,29 @@
 
-Character = (sign='', desc='') ->
+goog.provide('sch.Character');
+goog.provide('sch.Characters');
+
+goog.require('sch.getLocaleFromNavigator');
+
+sch.Character = (sign='', desc='') ->
     {
         sign: sign
         desc: desc
     }
 
-Characters = ->
+sch.Characters = ->
     characters = []
     defaultCharacters =
         cs: [
-            new Character('–', 'pomlčka')
-            new Character('—', 'dlouhá pomlčka')
-            new Character('„“', 'uvozovky')
-            new Character('…', 'výpustka')
+            new sch.Character('–', 'pomlčka')
+            new sch.Character('—', 'dlouhá pomlčka')
+            new sch.Character('„“', 'uvozovky')
+            new sch.Character('…', 'výpustka')
         ]
         en: [
-            new Character('–', 'dash')
-            new Character('—', 'long dash')
-            new Character('“”', 'quotation marks')
-            new Character('…', 'ellipsis')
+            new sch.Character('–', 'dash')
+            new sch.Character('—', 'long dash')
+            new sch.Character('“”', 'quotation marks')
+            new sch.Character('…', 'ellipsis')
         ]
 
     @getCharacters = ->
@@ -40,7 +45,7 @@ Characters = ->
         for x in [0...localStorage['countOfCharacters']]
             sign = localStorage['character.sign['+x+']']
             desc = localStorage['character.desc['+x+']']
-            characters.push(new Character(sign, desc))
+            characters.push(new sch.Character(sign, desc))
 
     @saveDefault = ->
         @save(defaultCharacters[getLocale()])
@@ -58,7 +63,7 @@ Characters = ->
         @restore()
 
     getLocale = ->
-        localStorage['locale'] = getLocaleFromNavigator() if localStorage['locale'] is undefined
+        localStorage['locale'] = sch.getLocaleFromNavigator() if localStorage['locale'] is undefined
         localStorage['locale']
 
     @restore()

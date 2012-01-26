@@ -1,7 +1,9 @@
 
-ContextMenu = ->
+goog.provide('sch.ContextMenu');
+
+sch.ContextMenu = ->
     linkMenuIdWithCharacter = {}
-    characters = new Characters()
+    characters = new sch.Characters()
 
     @updateCharacterContextMenu = ->
         chrome.contextMenus.removeAll(@createCharacterContextMenu)

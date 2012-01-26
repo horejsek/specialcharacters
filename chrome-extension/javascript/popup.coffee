@@ -1,10 +1,13 @@
 
-goog.require('goog.dom');
+goog.provide('sch.Popup');
 
-Popup = ->
+goog.require('goog.dom');
+goog.require('sch.Characters');
+
+sch.Popup = ->
     self = this
 
-    characters = new Characters()
+    characters = new sch.Characters()
 
     @init = ->
         insertListOfCharacters()

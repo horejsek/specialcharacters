@@ -1,12 +1,17 @@
 
-goog.require('goog.dom');
+goog.provide('sch.Options');
 
-Options = ->
+goog.require('goog.dom');
+goog.require('sch.Character');
+goog.require('sch.Characters');
+goog.require('sch.ContextMenu');
+
+sch.Options = ->
     self = this
 
     @countOfCharacters = 0
-    contextMenu = new ContextMenu()
-    characters = new Characters()
+    contextMenu = new sch.ContextMenu()
+    characters = new sch.Characters()
 
     @init = ->
         setLocale()
@@ -18,7 +23,7 @@ Options = ->
         elm.onchange = -> self.showSavePendings()
 
     insertListOfCharacters = ->
-        Options.countOfCharacters = characters.getCharacters().length
+        sch.Options.countOfCharacters = characters.getCharacters().length
 
         frag = document.createDocumentFragment()
         for character, x in characters.getCharacters()
@@ -115,20 +120,20 @@ Options = ->
             desc = goog.dom.getElement('character-desc-' + index)
 
             if sign?
-                newCharacters.push(new Character(sign.value, desc.value))
-                break if newCharacters.length is Options.countOfCharacters
+                newCharacters.push(new sch.Character(sign.value, desc.value))
+                break if newCharacters.length is sch.Options.countOfCharacters
 
             index++
 
         characters.save(newCharacters)
 
     @addCharacter = ->
-        newCharacterElm = createElmCharacter(new Character(), Options.countOfCharacters++)
+        newCharacterElm = createElmCharacter(new sch.Character(), sch.Options.countOfCharacters++)
         goog.dom.getElement('characters').appendChild(newCharacterElm)
         @showSavePendings()
 
     @deleteCharacter = (index) ->
-        Options.countOfCharacters--
+        sch.Options.countOfCharacters--
         characterElm = goog.dom.getElement('character-' + index)
         goog.dom.getElement('characters').removeChild(characterElm)
         @showSavePendings()
