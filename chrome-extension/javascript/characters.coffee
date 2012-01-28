@@ -4,11 +4,15 @@ goog.provide('sch.Characters');
 
 goog.require('sch.getLocaleFromNavigator');
 
+
+
 sch.Character = (sign='', desc='') ->
     {
         sign: sign
         desc: desc
     }
+
+
 
 sch.Characters = ->
     characters = []
@@ -29,14 +33,6 @@ sch.Characters = ->
     @getCharacters = ->
         characters.slice()
 
-    @insertCharacterToActiveElement = (tabId, character) ->
-        chrome.tabs.sendRequest(tabId, {
-            action: 'insertTextToActiveElement'
-            text: character.sign
-        })
-
-    @refresh = -> @restore()
-
     @restore = ->
         if localStorage['countOfCharacters'] is undefined
             @saveDefault()
@@ -48,7 +44,7 @@ sch.Characters = ->
             characters.push(new sch.Character(sign, desc))
 
     @saveDefault = ->
-        @save(defaultCharacters[getLocale()])
+        @save(defaultCharacters[@getLocale()])
 
     @save = (charactersToSave) ->
         if charactersToSave is null
@@ -62,10 +58,23 @@ sch.Characters = ->
 
         @restore()
 
-    getLocale = ->
+    @restore()
+
+    return
+
+
+
+goog.scope ->
+    sch.Characters::insertCharacterToActiveElement = (tabId, character) ->
+        chrome.tabs.sendRequest(tabId, {
+            action: 'insertTextToActiveElement'
+            text: character.sign
+        })
+
+    sch.Characters::refresh = -> @restore()
+
+    sch.Characters::getLocale = ->
         localStorage['locale'] = sch.getLocaleFromNavigator() if localStorage['locale'] is undefined
         localStorage['locale']
-
-    @restore()
 
     return

@@ -2,6 +2,8 @@
 goog.require('goog.events');
 goog.require('goog.dom.query');
 
+
+
 goog.events.listen(window, 'load', (e) ->
     translate = ->
         translateByText()

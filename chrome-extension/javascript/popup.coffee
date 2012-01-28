@@ -4,6 +4,8 @@ goog.provide('sch.Popup');
 goog.require('goog.dom');
 goog.require('sch.Characters');
 
+
+
 sch.Popup = ->
     self = this
 
@@ -15,35 +17,45 @@ sch.Popup = ->
     insertListOfCharacters = ->
         frag = document.createDocumentFragment()
         for character in characters.getCharacters()
-            frag.appendChild(createElmCharacter(character))
+            frag.appendChild(self.createElmCharacter(character))
         goog.dom.getElement('characters').appendChild(frag)
 
-    createElmCharacter = (character) ->
+    return
+
+
+
+goog.scope ->
+    # Create elements.
+
+    sch.Popup::createElmCharacter = (character) ->
+        self = this
         goog.dom.createDom(
             'p',
             {
                 class: 'character'
-                onclick: -> self.copyToClipboard(character.sign)
+                onclick: -> self.copyIntoClipboard(character.sign)
             },
-            createElmCharacterSign(character.sign),
-            createElmCharacterDesc(character.desc),
+            @createElmCharacterSign(character.sign),
+            @createElmCharacterDesc(character.desc),
         )
 
-    createElmCharacterSign = (sign) ->
+    sch.Popup::createElmCharacterSign = (sign) ->
         goog.dom.createDom('span', 'character-sign', sign)
 
-    createElmCharacterDesc = (desc) ->
+    sch.Popup::createElmCharacterDesc = (desc) ->
         goog.dom.createDom('span', 'character-desc', desc)
 
-    @copyToClipboard = (text) ->
-        clipboardTextarea = createClipboardTextarea(text)
+    # Copy into clipboard.
+
+    sch.Popup::copyIntoClipboard = (text) ->
+        clipboardTextarea = @createClipboardTextarea(text)
         document.body.appendChild(clipboardTextarea)
         clipboardTextarea.select()
         document.execCommand('copy')
         document.body.removeChild(clipboardTextarea)
         window.close()
 
-    createClipboardTextarea = (text) ->
+    sch.Popup::createClipboardTextarea = (text) ->
         goog.dom.createDom('textarea', {
             style: 'position: absolute; left: -100%;'
             value: text

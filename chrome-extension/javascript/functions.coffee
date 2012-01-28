@@ -1,6 +1,8 @@
 
 goog.provide('sch.getLocaleFromNavigator');
 
+
+
 sch.getLocaleFromNavigator = ->
     language = window.navigator.language
     if language.indexOf('en') is 0
