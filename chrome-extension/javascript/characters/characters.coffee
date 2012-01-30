@@ -1,16 +1,8 @@
 
-goog.provide('sch.Character');
-goog.provide('sch.Characters');
+goog.provide('sch.Characters')
 
-goog.require('sch.getLocaleFromNavigator');
-
-
-
-sch.Character = (sign='', desc='') ->
-    {
-        sign: sign
-        desc: desc
-    }
+goog.require('sch.getLocaleFromNavigator')
+goog.require('sch.Character')
 
 
 

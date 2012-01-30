@@ -1,5 +1,7 @@
 
-goog.provide('sch.ContextMenu');
+goog.provide('sch.ContextMenu')
+
+goog.require('sch.Characters')
 
 
 
