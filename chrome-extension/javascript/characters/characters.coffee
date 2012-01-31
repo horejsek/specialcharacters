@@ -26,7 +26,7 @@ sch.Characters = ->
         characters.slice()
 
     @restore = ->
-        if localStorage['countOfCharacters'] is undefined
+        if localStorage['countOfCharacters'] is undefined or localStorage['countOfCharacters'] is null
             @saveDefault()
 
         characters = []
@@ -36,7 +36,7 @@ sch.Characters = ->
             characters.push(new sch.Character(sign, desc))
 
     @saveDefault = ->
-        @save(defaultCharacters[@getLocale()])
+        @save(defaultCharacters[@getLocale()] || [])
 
     @save = (charactersToSave) ->
         if charactersToSave is null
@@ -44,9 +44,13 @@ sch.Characters = ->
 
         localStorage['countOfCharacters'] = charactersToSave.length;
 
+        for character, x in characters
+            localStorage.removeItem('character.sign['+x+']')
+            localStorage.removeItem('character.desc['+x+']')
+
         for character, x in charactersToSave
-            localStorage['character.sign['+x+']'] = character.sign;
-            localStorage['character.desc['+x+']'] = character.desc;
+            localStorage['character.sign['+x+']'] = character.sign
+            localStorage['character.desc['+x+']'] = character.desc
 
         @restore()
 
