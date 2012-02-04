@@ -60,5 +60,59 @@
 
     "donateIfLike": {
         "message":        "Pokud se ti toto rozšíření líbí - můžeš mi koupit pivo! :p"
+    },
+
+    "characterWhiteSmilingFace": {
+        "message":        "bílý úsměv"
+    },
+    "characterBlackSmilingFace": {
+        "message":        "černý úsměv"
+    },
+    "characterFrowningFace": {
+        "message":        "smutek"
+    },
+
+    "characterSpade": {
+        "message":        "piky"
+    },
+    "characterClub": {
+        "message":        "kříže"
+    },
+    "characterHeart": {
+        "message":        "srdce"
+    },
+    "characterDiamond": {
+        "message":        "diamanty"
+    },
+
+    "characterLeftwardsArrow": {
+        "message":        "šipka doleva"
+    },
+    "characterRightwardsArrow": {
+        "message":        "šipka doprava"
+    },
+    "characterUpwardsArrow": {
+        "message":        "šipka nahoru"
+    },
+    "characterDownwardsArrow": {
+        "message":        "šipka dolu"
+    },
+    "characterLeftRightArrow": {
+        "message":        "šipka zleva doprava"
+    },
+    "characterUpDownArrow": {
+        "message":        "šipka shora dolů"
+    },
+    "characterNorthWestArrow": {
+        "message":        "šipka severozápadně"
+    },
+    "characterNorthEastArrow": {
+        "message":        "šipka severovýchodně"
+    },
+    "characterSouthEastArrow": {
+        "message":        "šipka jihovýchodně"
+    },
+    "characterSouthWestArrow": {
+        "message":        "šipka jihozápadně"
     }
 }

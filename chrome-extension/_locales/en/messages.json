@@ -60,5 +60,59 @@
 
     "donateIfLike": {
         "message":        "If you like of this extension, please, pay me a beer! :p"
+    },
+
+    "characterWhiteSmilingFace": {
+        "message":        "white smiling face"
+    },
+    "characterBlackSmilingFace": {
+        "message":        "black smiling face"
+    },
+    "characterFrowningFace": {
+        "message":        "frowning face"
+    },
+
+    "characterSpade": {
+        "message":        "spade"
+    },
+    "characterClub": {
+        "message":        "club"
+    },
+    "characterHeart": {
+        "message":        "heart"
+    },
+    "characterDiamond": {
+        "message":        "diamond"
+    },
+
+    "characterLeftwardsArrow": {
+        "message":        "leftwards arrow"
+    },
+    "characterRightwardsArrow": {
+        "message":        "rightwards arrow"
+    },
+    "characterUpwardsArrow": {
+        "message":        "upawards arrow"
+    },
+    "characterDownwardsArrow": {
+        "message":        "downawards arrow"
+    },
+    "characterLeftRightArrow": {
+        "message":        "left right arrow"
+    },
+    "characterUpDownArrow": {
+        "message":        "up down arrow"
+    },
+    "characterNorthWestArrow": {
+        "message":        "north west arrow"
+    },
+    "characterNorthEastArrow": {
+        "message":        "north east arrow"
+    },
+    "characterSouthEastArrow": {
+        "message":        "south east arrow"
+    },
+    "characterSouthWestArrow": {
+        "message":        "south west arrow"
     }
 }

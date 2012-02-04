@@ -21,6 +21,29 @@ sch.Characters = ->
             new sch.Character('“”', 'quotation marks')
             new sch.Character('…', 'ellipsis')
         ]
+        smiles: [
+            new sch.Character('☺', chrome.i18n.getMessage('characterWhiteSmilingFace'))
+            new sch.Character('☻', chrome.i18n.getMessage('characterBlackSmilingFace'))
+            new sch.Character('☹', chrome.i18n.getMessage('characterFrowningFace'))
+        ]
+        cards: [
+            new sch.Character('♠', chrome.i18n.getMessage('characterSpade'))
+            new sch.Character('♣', chrome.i18n.getMessage('characterClub'))
+            new sch.Character('♥', chrome.i18n.getMessage('characterHeart'))
+            new sch.Character('♦', chrome.i18n.getMessage('characterDiamond'))
+        ]
+        arrows: [
+            new sch.Character('←', chrome.i18n.getMessage('characterLeftwardsArrow'))
+            new sch.Character('→', chrome.i18n.getMessage('characterRightwardsArrow'))
+            new sch.Character('↑', chrome.i18n.getMessage('characterUpwardsArrow'))
+            new sch.Character('↓', chrome.i18n.getMessage('characterDownwardsArrow'))
+            new sch.Character('↔', chrome.i18n.getMessage('characterLeftRightArrow'))
+            new sch.Character('↕', chrome.i18n.getMessage('characterUpDownArrow'))
+            new sch.Character('↖', chrome.i18n.getMessage('characterNorthWestArrow'))
+            new sch.Character('↗', chrome.i18n.getMessage('characterNorthEastArrow'))
+            new sch.Character('↘', chrome.i18n.getMessage('characterSouthEastArrow'))
+            new sch.Character('↙', chrome.i18n.getMessage('characterSouthWestArrow'))
+        ]
 
     @getCharacters = ->
         characters.slice()

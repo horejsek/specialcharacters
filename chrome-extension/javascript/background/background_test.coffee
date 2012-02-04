@@ -11,6 +11,7 @@ stubs = ->
 
 
 setUp = ->
+    goog.global.chrome = chromeMock
     stubs = new goog.testing.PropertyReplacer()
     return
 
@@ -36,3 +37,9 @@ createCharacterContextMenuMock = (->
     createCharacterContextMenuMock = ->
         count += 1
 )()
+
+
+chromeMock =
+    i18n:
+        getMessage: (key) ->
+            return key

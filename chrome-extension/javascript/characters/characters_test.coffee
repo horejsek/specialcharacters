@@ -7,6 +7,7 @@ goog.require('sch.Characters')
 
 
 setUp = ->
+    goog.global.chrome = chromeMock
     localStorage['locale'] = 'cs'
     localStorage['countOfCharacters'] = 0
     localStorage.removeItem('countOfCharacters')
@@ -40,3 +41,9 @@ testProtectCharactersData = ->
 
 
 testSave = ->
+
+
+chromeMock =
+    i18n:
+        getMessage: (key) ->
+            return key

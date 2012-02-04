@@ -65,7 +65,6 @@ test-chrome-extension:
 	    --output_mode deps \
 	    > $(CHROME_EXT_JS_DIR)test_deps.js;
 	#chromium-browser --temp-profile --allow-file-access-from-files $(CHROME_EXT_JS_DIR)alltests.html
-	#firefox $(CHROME_EXT_JS_DIR)alltests.html
 	$(PYTHON) $(CHROME_EXT_JS_DIR)alltests.py
 
 clean-chrome-extension:
