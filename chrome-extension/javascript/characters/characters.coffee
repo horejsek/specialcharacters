@@ -59,7 +59,7 @@ sch.Characters = ->
             characters.push(new sch.Character(sign, desc))
 
     @saveDefault = ->
-        @save(defaultCharacters[@getLocale()] || [])
+        @save(defaultCharacters[@getCollection()] || [])
 
     @save = (charactersToSave) ->
         if charactersToSave is null
@@ -92,8 +92,8 @@ goog.scope ->
 
     sch.Characters::refresh = -> @restore()
 
-    sch.Characters::getLocale = ->
-        localStorage['locale'] = sch.getLocaleFromNavigator() if localStorage['locale'] is undefined
-        localStorage['locale']
+    sch.Characters::getCollection = ->
+        localStorage['collection'] = sch.getLocaleFromNavigator() if localStorage['collection'] is undefined
+        localStorage['collection']
 
     return

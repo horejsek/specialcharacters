@@ -41,8 +41,8 @@
         "message":        "Ostatní nastavení"
     },
 
-    "optionsLocale": {
-        "message":        "Můj jazyk:"
+    "optionsCollection": {
+        "message":        "Kolekce:"
     },
 
     "optionsSaved": {
@@ -55,7 +55,7 @@
         "message":        "Uložit"
     },
     "optionsRestoreDefaultButton": {
-        "message":        "Obnovit výchoží"
+        "message":        "Nastavit výchoží z kolekce"
     },
 
     "donateIfLike": {

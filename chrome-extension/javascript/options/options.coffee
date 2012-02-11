@@ -16,7 +16,7 @@ sch.Options = ->
     characters = new sch.Characters()
 
     @init = ->
-        @setLocale()
+        @setCollection()
         insertListOfCharacters()
 
     insertListOfCharacters = ->
@@ -31,14 +31,14 @@ sch.Options = ->
         charactersElm.appendChild(frag)
 
     @saveDefault = ->
-        @saveLocale()
+        @saveCollection()
         characters.saveDefault()
         contextMenu.updateCharacterContextMenu()
         @init()
         @hideSavePendings()
 
     @save = ->
-        @saveLocale()
+        @saveCollection()
         saveCharacters()
         contextMenu.updateCharacterContextMenu()
         @hideSavePendings()
@@ -64,16 +64,16 @@ sch.Options = ->
 
 
 goog.scope ->
-    # Load & save locale.
+    # Load & save collection.
 
-    sch.Options::setLocale = ->
+    sch.Options::setCollection = ->
         self = this
-        elm = goog.dom.getElement('locale')
-        elm.value = localStorage['locale']
+        elm = goog.dom.getElement('collection')
+        elm.value = localStorage['collection']
         elm.onchange = -> self.showSavePendings()
 
-    sch.Options::saveLocale = ->
-        localStorage['locale'] = goog.dom.getElement('locale').value
+    sch.Options::saveCollection = ->
+        localStorage['collection'] = goog.dom.getElement('collection').value
 
     # Add & remove character.
 

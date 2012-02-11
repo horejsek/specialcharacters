@@ -41,8 +41,8 @@
         "message":        "Other settings"
     },
 
-    "optionsLocale": {
-        "message":        "My language:"
+    "optionsCollection": {
+        "message":        "Collection:"
     },
 
     "optionsSaved": {
@@ -55,7 +55,7 @@
         "message":        "Save"
     },
     "optionsRestoreDefaultButton": {
-        "message":        "Save defaults"
+        "message":        "Set defaults of collection"
     },
 
     "donateIfLike": {

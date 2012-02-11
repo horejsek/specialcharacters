@@ -8,27 +8,27 @@ goog.require('sch.Characters')
 
 setUp = ->
     goog.global.chrome = chromeMock
-    localStorage['locale'] = 'cs'
+    localStorage['collection'] = 'cs'
     localStorage['countOfCharacters'] = 0
     localStorage.removeItem('countOfCharacters')
 
 
 testCreateCsInstance = ->
-    localStorage['locale'] = 'cs'
+    localStorage['collection'] = 'cs'
     characters = new sch.Characters()
-    assertEquals('cs', characters.getLocale())
+    assertEquals('cs', characters.getCollection())
     assertNotEquals(0, characters.getCharacters().length)
 
 
 testCreateEnInstance = ->
-    localStorage['locale'] = 'en'
+    localStorage['collection'] = 'en'
     characters = new sch.Characters()
-    assertEquals('en', characters.getLocale())
+    assertEquals('en', characters.getCollection())
     assertNotEquals(0, characters.getCharacters().length)
 
 
 testCreateInstanceWithUnknownInstance = ->
-    localStorage['locale'] = 'unknown'
+    localStorage['collection'] = 'unknown'
     characters = new sch.Characters()
     assertEquals(0, characters.getCharacters().length)
 
