@@ -28,11 +28,12 @@ test: test-chrome-extension
 clean: clean-chrome-extension
 
 build-chrome-extension: clean compile-chrome-extension
-	mkdir $(CHROME_EXT_NAME)
-	cp -r chrome-extension/* $(CHROME_EXT_NAME)/
-	find $(CHROME_EXT_NAME)/javascript/* -not -name *.min.js | xargs rm -rf
-	zip -r -q -9 $(CHROME_EXT_ZIP_ARCHIVE_NAME) $(CHROME_EXT_NAME)/
-	rm -rf $(CHROME_EXT_NAME)
+	mkdir /tmp/$(CHROME_EXT_NAME)
+	cp -r chrome-extension/* /tmp/$(CHROME_EXT_NAME)/
+	find /tmp/$(CHROME_EXT_NAME)/javascript/* -not -name *.min.js -not -name compiled | xargs rm -rf
+	cd /tmp/; zip -r -q -9 $(CHROME_EXT_ZIP_ARCHIVE_NAME) $(CHROME_EXT_NAME)/
+	mv /tmp/$(CHROME_EXT_ZIP_ARCHIVE_NAME) $(CHROME_EXT_ZIP_ARCHIVE_NAME)
+	rm -rf /tmp/$(CHROME_EXT_NAME)
 
 compile-chrome-extension:
 	coffee -cb $(CHROME_EXT_COFFEE_SOURCES)
@@ -49,13 +50,13 @@ compile-chrome-extension:
 	    --input $(CHROME_EXT_JS_DIR)popup/popup.js \
 	    --input $(CHROME_EXT_JS_DIR)options/options.js \
 	    --output_mode compiled \
-	    > $(CHROME_EXT_JS_DIR)specialCharacters.min.js;
+	    > $(CHROME_EXT_JS_DIR)compiled/specialCharacters.min.js;
 	$(PYTHON) $(CLOSURE_LIBRARY)closure/bin/calcdeps.py \
 	    --path $(CLOSURE_LIBRARY) \
 	    --compiler_jar $(CLOSURE_COMPILER) \
 	    --input $(CHROME_EXT_JS_DIR)contentscript/contentscript.js \
 	    --output_mode compiled \
-	    > $(CHROME_EXT_JS_DIR)contentscript.min.js;
+	    > $(CHROME_EXT_JS_DIR)compiled/contentscript.min.js;
 
 test-chrome-extension:
 	coffee -cb $(CHROME_EXT_COFFEE_SOURCES)
@@ -69,7 +70,7 @@ test-chrome-extension:
 
 clean-chrome-extension:
 	rm -rf $(CHROME_EXT_NAME) $(CHROME_EXT_ZIP_ARCHIVE_NAME)
-	find $(CHROME_EXT_JS_DIR) -type f -name *.js | xargs rm -f
+	find $(CHROME_EXT_JS_DIR) -type f -name *.js -not path compiled/ | xargs rm -f
 
 localdev: install-git-hooks init-submodules get-selenium-server install-libs
 

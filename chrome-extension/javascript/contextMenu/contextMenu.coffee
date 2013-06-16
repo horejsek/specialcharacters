@@ -16,9 +16,10 @@ sch.ContextMenu = ->
         linkMenuIdWithCharacter = {}
         for character in characters.getCharacters()
             createCharacterContextMenuItem(character)
+        chrome.contextMenus.onClicked.addListener onClick
 
     createCharacterContextMenuItem = (character) ->
-        id = chrome.contextMenus.create(self.getPropertiesOfCharacter(character, onClick))
+        id = chrome.contextMenus.create(self.getPropertiesOfCharacter(character))
         linkMenuIdWithCharacter[id] = character
 
     onClick = (info, tab) ->
@@ -33,11 +34,10 @@ goog.scope ->
     sch.ContextMenu::updateCharacterContextMenu = ->
         chrome.contextMenus.removeAll(@createCharacterContextMenu)
 
-    sch.ContextMenu::getPropertiesOfCharacter = (character, onclickCallback) ->
+    sch.ContextMenu::getPropertiesOfCharacter = (character) ->
         {
             title: chrome.i18n.getMessage('contextMenuInsert') + ' ' + character.sign + ' (' + character.desc + ')'
             contexts: ['editable']
-            onclick: onclickCallback
         }
 
     return

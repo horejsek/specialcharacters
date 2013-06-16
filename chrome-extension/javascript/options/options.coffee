@@ -2,6 +2,7 @@
 goog.provide('sch.Options');
 
 goog.require('goog.dom');
+goog.require('goog.events');
 goog.require('sch.Character');
 goog.require('sch.Characters');
 goog.require('sch.ContextMenu');
@@ -16,8 +17,18 @@ sch.Options = ->
     characters = new sch.Characters()
 
     @init = ->
+        @initListeners()
         @setCollection()
         insertListOfCharacters()
+
+    @initListeners = ->
+        that = @
+        elm = goog.dom.getElement 'add'
+        goog.events.listen elm, goog.events.EventType.CLICK, () -> that.addCharacter()
+        elm = goog.dom.getElement 'save'
+        goog.events.listen elm, goog.events.EventType.CLICK, () -> that.save()
+        elm = goog.dom.getElement 'save-default'
+        goog.events.listen elm, goog.events.EventType.CLICK, () -> that.saveDefault()
 
     insertListOfCharacters = ->
         sch.Options.countOfCharacters = characters.getCharacters().length
@@ -117,12 +128,12 @@ goog.scope ->
             {
                 id: 'character-sign-' + index
                 class: 'character-sign'
-                onchange: onchangeCallback
                 type: 'text'
                 value: sign
                 maxlength: 2
             }
         )
+        goog.events.listen input, goog.events.EventType.CHANGE, onchangeCallback
         goog.dom.createDom(
             'td',
             undefined,
@@ -136,11 +147,11 @@ goog.scope ->
             {
                 id: 'character-desc-' + index
                 class: 'character-desc'
-                onchange: onchangeCallback
                 type: 'text'
                 value: desc
             }
         )
+        goog.events.listen input, goog.events.EventType.CHANGE, onchangeCallback
         goog.dom.createDom(
             'td',
             undefined,
@@ -149,13 +160,8 @@ goog.scope ->
         )
 
     sch.Options::createCharacterCellDelete = (index, onclickCallback) ->
-        button = goog.dom.createDom(
-            'button',
-            {
-                onclick: onclickCallback
-            },
-            chrome.i18n.getMessage('optionGeneralDeleteCharacterButton'),
-        )
+        button = goog.dom.createDom 'button', {}, chrome.i18n.getMessage 'optionGeneralDeleteCharacterButton'
+        goog.events.listen button, goog.events.EventType.CLICK, onclickCallback
         goog.dom.createDom(
             'td',
             undefined,

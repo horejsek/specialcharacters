@@ -1,17 +1,19 @@
 Special Characters
 ==================
 
+Warning: This was my first app using little bit more JavaScript, CoffeeScript & Closure Compiler. Code looks like that, so do not copy & paste it. This was just my sandbox. :)
+
 Chrome extension
 ----------------
 
 Helper for insert of special characters. You can copy characters into clipboard in popup window or insert it in each form element by context menu.
 
 There are several default collection of characters after installation:
-– Czech,
-– English,
-– Smiles,
-– Cards,
-– and Arrows.
+ * Czech,
+ * English,
+ * Smiles,
+ * Cards,
+ * and Arrows.
 And you can set own collection in options page.
 
 How to install
