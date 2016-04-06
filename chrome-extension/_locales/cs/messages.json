@@ -37,8 +37,8 @@
         "message":        "Odebrat"
     },
 
-    "optionsOtherTitle": {
-        "message":        "Ostatní nastavení"
+    "optionsCollectionTitle": {
+        "message":        "Kolekce"
     },
 
     "optionsCollection": {
@@ -54,8 +54,8 @@
     "optionsSaveButton": {
         "message":        "Uložit"
     },
-    "optionsRestoreDefaultButton": {
-        "message":        "Nastavit výchoží z kolekce"
+    "optionsSetCollectionButton": {
+        "message":        "Nastavit kolekci"
     },
 
     "donateIfLike": {

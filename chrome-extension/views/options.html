@@ -19,35 +19,12 @@
             <table class="options">
                 <thead>
                     <tr>
-                        <td colspan="3" class="title" i18n-text="optionsGeneralTitle"></td>
+                        <td colspan="2" class="title" i18n-text="optionsCollectionTitle"></td>
                     </tr>
                 </thead>
 
-                <tbody id="characters">
-                </tbody>
-
-                <tfoot>
+                <tbody>
                     <tr>
-                        <td colspan="2"></td>
-                        <td><button id="add" i18n-text="optionGeneralAddCharacterButton"></button></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="save">
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-
-            <table class="options">
-                <thead>
-                    <tr>
-                        <td colspan="2" class="title" i18n-text="optionsOtherTitle"></td>
-                    </tr>
-                </thead>
-
-                <tbody id="characters">
-                    <tr>
-                        <td i18n-text="optionsCollection" style="width: 150px;"></td>
                         <td>
                             <select id="collection">
                                 <optgroup label="Languages">
@@ -60,14 +37,32 @@
                                     <option value="arrows">Arrows</option>
                                 </optgroup>
                             </select>
+                            <button id="save-default" i18n-text="optionsSetCollectionButton"></button>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
+            <table class="options">
+                <thead>
+                    <tr>
+                        <td colspan="3" class="title" i18n-text="optionsGeneralTitle"></td>
+                    </tr>
+                </thead>
+
+                <tbody id="characters">
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td><button id="add" i18n-text="optionGeneralAddCharacterButton"></button></td>
+                    </tr>
+                </tfoot>
+            </table>
+
             <div id="saveOptions">
                 <button id="save" i18n-text="optionsSaveButton"></button>
-                <button id="save-default" i18n-text="optionsRestoreDefaultButton"></button>
                 <span id="savePendings" i18n-text="optionsSavePendings"></span>
             </div>
 

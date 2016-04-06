@@ -45,7 +45,8 @@ sch.Options = ->
         @saveCollection()
         characters.saveDefault()
         contextMenu.updateCharacterContextMenu()
-        @init()
+        @setCollection()
+        insertListOfCharacters()
         @hideSavePendings()
 
     @save = ->

@@ -21,7 +21,7 @@
     },
 
     "optionsGeneralTitle": {
-        "message":        "Settings of characters"
+        "message":        "Customize collection of special characters"
     },
 
     "optionGeneralCharacter": {
@@ -37,8 +37,8 @@
         "message":        "Remove"
     },
 
-    "optionsOtherTitle": {
-        "message":        "Other settings"
+    "optionsCollectionTitle": {
+        "message":        "Collection"
     },
 
     "optionsCollection": {
@@ -54,12 +54,12 @@
     "optionsSaveButton": {
         "message":        "Save"
     },
-    "optionsRestoreDefaultButton": {
-        "message":        "Set defaults of collection"
+    "optionsSetCollectionButton": {
+        "message":        "Set collection"
     },
 
     "donateIfLike": {
-        "message":        "If you like of this extension, please, pay me a beer! :p"
+        "message":        "If you like this extension, please, buy me a beer! :p"
     },
 
     "characterWhiteSmilingFace": {

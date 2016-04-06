@@ -110,10 +110,6 @@ div#status {
     display: none;
 }
 
-div#saveOptions {
-    margin: 40px 0px;
-}
-
 .character-sign {
     width: 2.5em;
     font-size: 2em !important;
